@@ -6,7 +6,9 @@
 #include <time.h>
 
 /* generate_matrix.c */
-int *generate_matrix_integer (int rows, int columns);
 double *generate_matrix_double (int rows, int columns);
+
+/* sequential_matrix_product.c */
+double *sequential_matrix_product(double *P, int P_rows, int P_columns, double *Q, int Q_rows, int Q_columns);
 
 #endif 
