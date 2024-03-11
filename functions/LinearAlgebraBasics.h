@@ -5,6 +5,8 @@
 #include <stdlib.h>
 #include <time.h>
 
+#include <math.h>
+
 /* generate_matrix.c */
 double *generate_matrix_double (int rows, int columns);
 double *generate_identity_matrix (int dimension);
@@ -14,5 +16,11 @@ double *sequential_matrix_product(double *P, int P_rows, int P_columns, double *
 
 /* sequential_vector_matrix_product.c */
 double *sequential_vector_matrix_product(double *A, int A_rows, int A_columns, double *X, double dimension); 
+
+/* vector_operations.c */
+double *vectors_addition(double *X, double *Y, int dimension);
+double *scalar_product(double *X, double *Y, int dimension);
+double *vector_product(double *X, double *Y);
+double vector_norm(double *X, int dimension);
 
 #endif 

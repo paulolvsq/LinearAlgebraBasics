@@ -2,11 +2,13 @@ FUNCTIONS_C = $(shell ls *.c)
 CC = gcc
 CFLAGS = -Wall -Werror
 LIB = LinearAlgebraBasics.so
+MATH = -lm
 
-all : TEST_generate_matrix TEST_sequential_matrix_product TEST_sequential_vector_matrix_product
+all : TEST_generate_matrix TEST_sequential_matrix_product TEST_sequential_vector_matrix_product TEST_vector_operations
 	./TEST_generate_matrix
 	./TEST_sequential_matrix_product
 	./TEST_sequential_vector_matrix_product
+	./TEST_vector_operations
 
 TEST_generate_matrix : TEST_generate_matrix.c
 	$(CC) $(CFLAGS) -o $@ $^ ./$(LIB)
@@ -17,7 +19,11 @@ TEST_sequential_matrix_product : TEST_sequential_matrix_product.c
 TEST_sequential_vector_matrix_product : TEST_sequential_vector_matrix_product.c
 	$(CC) $(CFLAGS) -o $@ $^ ./$(LIB)
 
+TEST_vector_operations : TEST_vector_operations.c
+	$(CC) $(CFLAGS) -o $@ $^ ./$(LIB) $(MATH)
+
 clean :
 	rm -f *.o *~
 	rm -f LinearAlgebraBasics.so LinearAlgebraBasics.h
 	rm -f TEST_generate_matrix TEST_sequential_matrix_product TEST_sequential_vector_matrix_product
+	rm -f TEST_vector_operations
