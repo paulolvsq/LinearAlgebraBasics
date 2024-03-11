@@ -21,28 +21,3 @@ double *sequential_matrix_product(double *P, int P_rows, int P_columns, double *
     return matrix;
 
 }
-
-/*
-double *sequential_matrix_product(double *P, int P_rows, int P_columns, double *Q, int Q_rows, int Q_columns) {
-    
-    // ASSERTION : THE USER WILL ALWAYS GIVE MATRICES OF THE RIGHT SIZE AS INPUT
-
-    double *matrix = malloc(sizeof(double) * (P_rows * Q_columns));
-
-    double value;
-    
-    for (int i = 0; i < P_rows; i++) {
-	for (int j = 0; j < Q_columns; j++) {
-	    value = 0;
-	    for (int k = 0; k < Q_rows; k++) {
-		value += P[i * P_rows + k] * Q[j + Q_columns * k];
-	    }
-	    matrix[i * Q_columns + j] = value;
-	}
-    }
-
-    return matrix;
-
-}
-*/
-		

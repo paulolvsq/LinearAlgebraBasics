@@ -23,4 +23,9 @@ double *scalar_product(double *X, double *Y, int dimension);
 double *vector_product(double *X, double *Y);
 double vector_norm(double *X, int dimension);
 
+/* matrix_operations.c */
+double *matrices_addition(double *A, double *B, int rows, int columns);
+double *matrix_scalar_multiplication(double *A, int rows, int columns, int scalar);
+double *matrix_transpose(double *A, int rows, int columns);
+
 #endif 
