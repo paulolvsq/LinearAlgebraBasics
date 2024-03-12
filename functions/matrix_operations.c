@@ -51,8 +51,18 @@ double matrix_trace(double *A, int dimension) {
     
 }
 
-// double *matrix_norm(double *A, int dimension) {
+double matrix_norm(double *A, int rows, int columns) {
 
+    // FROBENIUS NORM
+
+    double *A_t = matrix_transpose(A, rows, columns);
     
+    double *transpose_product = sequential_matrix_product(A, rows, columns, A_t, columns, rows);
+
+    double frobenius = matrix_trace(transpose_product, rows);
+
+    return frobenius;
+    
+}
 
 
