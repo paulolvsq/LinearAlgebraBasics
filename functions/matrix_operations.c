@@ -37,3 +37,22 @@ double *matrix_transpose(double *A, int rows, int columns) {
     return matrix;
 
 }
+
+double matrix_trace(double *A, int dimension) {
+
+    double trace = 0.0;
+
+    for (int i = 0; i < dimension; i++) 
+	for (int j = 0; j < dimension; j++) 
+	    if (i == j) trace += A[i * dimension + j];
+	
+
+    return trace;
+    
+}
+
+// double *matrix_norm(double *A, int dimension) {
+
+    
+
+

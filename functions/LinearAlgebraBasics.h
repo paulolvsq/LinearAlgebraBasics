@@ -27,5 +27,6 @@ double vector_norm(double *X, int dimension);
 double *matrices_addition(double *A, double *B, int rows, int columns);
 double *matrix_scalar_multiplication(double *A, int rows, int columns, int scalar);
 double *matrix_transpose(double *A, int rows, int columns);
+double matrix_trace(double *A, int dimension);
 
 #endif 

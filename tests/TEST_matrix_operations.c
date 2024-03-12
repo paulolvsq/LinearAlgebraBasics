@@ -45,6 +45,14 @@ int main() {
     }
     printf("\n");
 
+    int dimension = 10;
+    double *identity = generate_identity_matrix(dimension);
+    double trace = matrix_trace(identity, dimension);
+
+    printf("##################################### TEST 4 #####################################\n");
+    
+    printf("Trace = %lf\n", trace);
+
     return 0;
 
 }
