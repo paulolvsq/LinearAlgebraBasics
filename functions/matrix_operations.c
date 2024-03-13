@@ -30,9 +30,9 @@ double *matrix_transpose(double *A, int rows, int columns) {
 
     double *matrix = malloc(rows * columns * sizeof(double));
 
-    for (int i = 0; i < rows; i++)
-	for (int j = 0; j < columns; j++)
-	    matrix[i * columns + j] = A[j * columns + i];
+    for (int i = 0; i < columns; i++)
+	for (int j = 0; j < rows; j++)
+	    matrix[i * rows + j] = A[i * rows + j];
 
     return matrix;
 
@@ -72,4 +72,14 @@ double matrix_norm(double *A, int rows, int columns) {
     
 }
 
+double frobenius_norm(double *A, int rows, int columns) {
 
+    double frobenius = 0.0;
+
+    for (int i = 0; i < rows; i++)
+	for (int j = 0; j < columns; j++)
+	    frobenius += pow(A[i * columns + j], 2.0);
+    
+    return sqrt(frobenius);
+    
+}

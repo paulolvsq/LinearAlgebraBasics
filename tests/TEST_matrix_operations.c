@@ -63,6 +63,12 @@ int main() {
 
     printf("Norm = %lf\n", norm);
 	
+    printf("##################################### TEST 6 #####################################\n");
+	
+    double frobenius = frobenius_norm(M, rows, columns);
+
+    printf("Frobenius = %lf\n", frobenius);
+    
     return 0;
 
 }
