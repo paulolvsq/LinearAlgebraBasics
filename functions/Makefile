@@ -25,7 +25,7 @@ vector_operations.o :
 	$(CC) -c -o $@ vector_operations.c $(MATH)
 
 matrix_operations.o :
-	$(CC) -c -o $@ matrix_operations.c
+	$(CC) -c -o $@ matrix_operations.c $(MATH)
 
 clean :
 	rm -f *.o *~ 

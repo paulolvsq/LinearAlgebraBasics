@@ -53,15 +53,22 @@ double matrix_trace(double *A, int dimension) {
 
 double matrix_norm(double *A, int rows, int columns) {
 
-    // FROBENIUS NORM
+    // 1-NORM
 
-    double *A_t = matrix_transpose(A, rows, columns);
+    double max = -INFINITY;
+    double sum = 0.0;
+
+    double *TMP = matrix_transpose(A, rows, columns);
     
-    double *transpose_product = sequential_matrix_product(A, rows, columns, A_t, columns, rows);
+    for (int i = 0; i < columns; i++) {
+	for (int j = 0; j < rows; j++) {
+	    sum += TMP[i * rows + j];
+	}
+	if (max < sum) max = sum;
+	sum = 0.0;
+    }
 
-    double frobenius = matrix_trace(transpose_product, rows);
-
-    return frobenius;
+    return max;
     
 }
 

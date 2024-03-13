@@ -53,6 +53,16 @@ int main() {
     
     printf("Trace = %lf\n", trace);
 
+    printf("##################################### TEST 5 #####################################\n");
+
+    int rows = 3;
+    int columns = 2;
+    double M[] = {1.0, 2.0, 3.0, 4.0, 5.0, 6.0};
+
+    double norm = matrix_norm(M, rows, columns);
+
+    printf("Norm = %lf\n", norm);
+	
     return 0;
 
 }
