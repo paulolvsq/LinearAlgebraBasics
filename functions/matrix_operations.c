@@ -83,3 +83,4 @@ double frobenius_norm(double *A, int rows, int columns) {
     return sqrt(frobenius);
     
 }
+

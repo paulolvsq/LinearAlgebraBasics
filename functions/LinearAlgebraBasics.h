@@ -30,5 +30,5 @@ double *matrix_transpose(double *A, int rows, int columns);
 double matrix_trace(double *A, int dimension);
 double matrix_norm(double *A, int rows, int columns);
 double frobenius_norm(double *A, int rows, int columns);
-    
+
 #endif 

@@ -68,7 +68,7 @@ int main() {
     double frobenius = frobenius_norm(M, rows, columns);
 
     printf("Frobenius = %lf\n", frobenius);
-    
+
     return 0;
 
 }
