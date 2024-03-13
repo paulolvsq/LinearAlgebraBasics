@@ -7,6 +7,16 @@
 
 #include <math.h>
 
+typedef struct LU {
+
+    int dimension;
+
+    double *A;
+    double *L;
+    double *U;
+
+} LU;
+
 /* generate_matrix.c */
 double *generate_matrix_double (int rows, int columns);
 double *generate_identity_matrix (int dimension);
@@ -30,5 +40,9 @@ double *matrix_transpose(double *A, int rows, int columns);
 double matrix_trace(double *A, int dimension);
 double matrix_norm(double *A, int rows, int columns);
 double frobenius_norm(double *A, int rows, int columns);
+
+/* LU_decomposition.c */
+LU *create_LU(double *A, int dimension);
+LU *LU_decomposition(double *A, int dimension);
 
 #endif 

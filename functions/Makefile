@@ -9,7 +9,7 @@ all : LinearAlgebraBasics.so LinearAlgebraBasics.h
 	cp $^ ..
 	cp $^ ../tests
 
-LinearAlgebraBasics.so : generate_matrix.o sequential_matrix_product.o sequential_vector_matrix_product.o vector_operations.o matrix_operations.o
+LinearAlgebraBasics.so : generate_matrix.o sequential_matrix_product.o sequential_vector_matrix_product.o vector_operations.o matrix_operations.o LU_decomposition.o
 	$(CC) -shared $(FUNCTIONS_O) -o $@ $(MATH)
 
 generate_matrix.o :
@@ -26,6 +26,9 @@ vector_operations.o :
 
 matrix_operations.o :
 	$(CC) -c -o $@ matrix_operations.c $(MATH)
+
+LU_decomposition.o :
+	$(CC) -c -o $@ LU_decomposition.c
 
 clean :
 	rm -f *.o *~ 
