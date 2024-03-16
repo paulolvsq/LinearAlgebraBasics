@@ -18,6 +18,8 @@ int main() {
 
     printf("\n");
 
+    free(vector);
+    
     A_rows = 5;
     A_columns = 4;
     dimension = 4;
@@ -32,6 +34,8 @@ int main() {
     for (int i = 0; i < A_rows; i++)
 	printf("%lf\t", vector2[i]);
 
+    free(vector2);
+    
     printf("\n");
 
     dimension = 4;
@@ -47,6 +51,9 @@ int main() {
 	printf("%lf\t", vector3[i]);
 
     printf("\n");
+
+    free(A3);
+    free(vector3);
 
     return 0;
 

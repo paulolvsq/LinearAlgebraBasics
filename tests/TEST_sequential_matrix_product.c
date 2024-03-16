@@ -22,6 +22,8 @@ int main() {
 	printf("\n");
     }
 
+    free(matrix);
+    
     printf("\n");
     
     P_rows = 4;
@@ -44,6 +46,8 @@ int main() {
 	printf("\n");
     }
 
+    free(matrix2);
+    
     P_rows = 4;
     P_columns = 5;
 
@@ -64,6 +68,9 @@ int main() {
 	}
 	printf("\n");
     }
+
+    free(Q3);
+    free(matrix3);
     
     return 0;
 

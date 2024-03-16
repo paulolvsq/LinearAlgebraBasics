@@ -21,6 +21,8 @@ int main() {
     }
     printf("\n");
 
+    free(result_matrices_addition);
+    
     double *result_scalar_multiplication = matrix_scalar_multiplication(P, P_rows, P_columns, scalar);
 
     printf("##################################### TEST 2 #####################################\n");
@@ -32,6 +34,8 @@ int main() {
 	printf("\n");
     }
     printf("\n");
+
+    free(result_scalar_multiplication);
 
     double *result_matrix_transpose = matrix_transpose(P, P_rows, P_columns);
     
@@ -45,6 +49,8 @@ int main() {
     }
     printf("\n");
 
+    free(result_matrix_transpose);
+    
     int dimension = 10;
     double *identity = generate_identity_matrix(dimension);
     double trace = matrix_trace(identity, dimension);
@@ -53,6 +59,8 @@ int main() {
     
     printf("Trace = %lf\n", trace);
 
+    free(identity);
+    
     printf("##################################### TEST 5 #####################################\n");
 
     int rows = 3;

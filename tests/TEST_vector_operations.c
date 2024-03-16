@@ -16,6 +16,8 @@ int main() {
 
     printf("\n");
 
+    free(result_vectors_addition);
+
     double *result_scalar_product = scalar_product(X, Y, dimension);
 
     printf("##################################### TEST 2 #####################################\n");
@@ -24,6 +26,8 @@ int main() {
 	printf("%lf\t", result_scalar_product[i]);
 
     printf("\n");
+
+    free(result_scalar_product);
 
     double *result_vector_product = vector_product(X, Y);
     
@@ -34,6 +38,8 @@ int main() {
 
     printf("\n");
 
+    free(result_vector_product);
+    
     double norm = vector_norm(X, 3);
     
     printf("##################################### TEST 4 #####################################\n");

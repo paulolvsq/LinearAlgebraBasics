@@ -34,4 +34,4 @@ clean :
 	rm -f *.o *~
 	rm -f LinearAlgebraBasics.so LinearAlgebraBasics.h
 	rm -f TEST_generate_matrix TEST_sequential_matrix_product TEST_sequential_vector_matrix_product
-	rm -f TEST_vector_operations TEST_matrix_operations
+	rm -f TEST_vector_operations TEST_matrix_operations TEST_LU_decomposition

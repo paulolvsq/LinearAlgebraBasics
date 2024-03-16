@@ -26,6 +26,10 @@ int main() {
 	}
 	printf("\n");
     }
+
+    //free(LU_test->A);
+    free(LU_test->L);
+    free(LU_test->U);
     
     return 0;
 
