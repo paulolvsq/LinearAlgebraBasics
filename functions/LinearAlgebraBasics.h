@@ -40,6 +40,7 @@ double *matrix_transpose(double *A, int rows, int columns);
 double matrix_trace(double *A, int dimension);
 double matrix_norm(double *A, int rows, int columns);
 double frobenius_norm(double *A, int rows, int columns);
+double matrix_determinant(double *A, int dimension);
 
 /* LU_decomposition.c */
 LU *create_LU(double *A, int dimension);

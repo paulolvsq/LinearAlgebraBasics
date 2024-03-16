@@ -77,6 +77,12 @@ int main() {
 
     printf("Frobenius = %lf\n", frobenius);
 
+    printf("##################################### TEST 7 #####################################\n");
+
+    double determinant = matrix_determinant(P, P_rows);
+
+    printf("Determinant = %lf\n", determinant);
+    
     return 0;
 
 }
