@@ -31,7 +31,7 @@ LU_decomposition.o :
 	$(CC) -c -o $@ LU_decomposition.c
 
 QR_decomposition.o :
-	$(CC) -c -o $@ QR_decomposition.c
+	$(CC) -c -o $@ QR_decomposition.c $(MATH)
 
 clean :
 	rm -f *.o *~ 
