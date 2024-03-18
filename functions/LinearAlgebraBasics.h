@@ -17,6 +17,16 @@ typedef struct LU {
 
 } LU;
 
+typedef struct QR {
+
+    int rows, columns;
+
+    double *A;
+    double *Q;
+    double *R;
+
+} QR;
+
 /* generate_matrix.c */
 double *generate_matrix_double (int rows, int columns);
 double *generate_identity_matrix (int dimension);
@@ -45,5 +55,8 @@ double matrix_determinant(double *A, int dimension);
 /* LU_decomposition.c */
 LU *create_LU(double *A, int dimension);
 LU *LU_decomposition(double *A, int dimension);
+
+/* QR_decomposition.c */
+QR *create_QR(double *A, int rows, int columns);
 
 #endif 
