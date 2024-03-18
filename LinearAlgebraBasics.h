@@ -7,6 +7,26 @@
 
 #include <math.h>
 
+typedef struct LU {
+
+    int rows, columns;
+
+    double *A;
+    double *L;
+    double *U;
+
+} LU;
+
+typedef struct QR {
+
+    int rows, columns;
+
+    double *A;
+    double *Q;
+    double *R;
+
+} QR;
+
 /* generate_matrix.c */
 double *generate_matrix_double (int rows, int columns);
 double *generate_identity_matrix (int dimension);
@@ -30,5 +50,13 @@ double *matrix_transpose(double *A, int rows, int columns);
 double matrix_trace(double *A, int dimension);
 double matrix_norm(double *A, int rows, int columns);
 double frobenius_norm(double *A, int rows, int columns);
+double matrix_determinant(double *A, int rows, int columns);
+
+/* LU_decomposition.c */
+LU *create_LU(double *A, int rows, int columns);
+LU *LU_decomposition(double *A, int rows, int columns);
+
+/* QR_decomposition.c */
+QR *create_QR(double *A, int rows, int columns);
 
 #endif 

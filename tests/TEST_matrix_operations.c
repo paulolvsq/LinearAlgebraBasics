@@ -79,7 +79,7 @@ int main() {
 
     printf("##################################### TEST 7 #####################################\n");
 
-    double determinant = matrix_determinant(P, P_rows);
+    double determinant = matrix_determinant(P, P_rows, P_columns);
 
     printf("Determinant = %lf\n", determinant);
 
@@ -87,7 +87,7 @@ int main() {
 
     double B[] = {3.0, 2.0, 4.0, 2.0, 0.0, 2.0, 4.0, 2.0, 3.0};
 
-    double determinant2 = matrix_determinant(B, P_rows);
+    double determinant2 = matrix_determinant(B, P_rows, P_columns);
 
     printf("Determinant = %lf\n", determinant2);
     

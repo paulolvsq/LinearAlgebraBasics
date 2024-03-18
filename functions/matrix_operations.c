@@ -84,18 +84,22 @@ double frobenius_norm(double *A, int rows, int columns) {
     
 }
 
-double matrix_determinant(double *A, int dimension) {
+double matrix_determinant(double *A, int rows, int columns) {
 
-    LU *LU_matrices = LU_decomposition(A, dimension);
+    LU *LU_matrices = LU_decomposition(A, rows, columns);
 
     double determinant = 1.0;
 
-    for (int i = 0; i < dimension; i++)
-	determinant *= LU_matrices->L[i * dimension + i];
+    for (int i = 0; i < rows; i++)
+	for (int j = 0; j < columns; j++)
+	    if (i == j) determinant *= LU_matrices->L[i * columns + i];
 
-    for (int i = 0; i < dimension; i++)
-	determinant *= LU_matrices->U[i * dimension + i];
+    for (int i = 0; i < rows; i++)
+	for (int j = 0; j < columns; j++)
+	    if (i == j) determinant *= LU_matrices->U[i * columns + i];
 
+    free(LU_matrices->L);
+    free(LU_matrices->U);
     free(LU_matrices);
     
     return determinant;

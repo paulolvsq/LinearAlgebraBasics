@@ -9,7 +9,7 @@
 
 typedef struct LU {
 
-    int dimension;
+    int rows, columns;
 
     double *A;
     double *L;
@@ -50,11 +50,11 @@ double *matrix_transpose(double *A, int rows, int columns);
 double matrix_trace(double *A, int dimension);
 double matrix_norm(double *A, int rows, int columns);
 double frobenius_norm(double *A, int rows, int columns);
-double matrix_determinant(double *A, int dimension);
+double matrix_determinant(double *A, int rows, int columns);
 
 /* LU_decomposition.c */
-LU *create_LU(double *A, int dimension);
-LU *LU_decomposition(double *A, int dimension);
+LU *create_LU(double *A, int rows, int columns);
+LU *LU_decomposition(double *A, int rows, int columns);
 
 /* QR_decomposition.c */
 QR *create_QR(double *A, int rows, int columns);
