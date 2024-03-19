@@ -90,6 +90,21 @@ int main() {
     double determinant2 = matrix_determinant(B, P_rows, P_columns);
 
     printf("Determinant = %lf\n", determinant2);
+
+    rows = 3;
+    columns = 3;
+    double A[] = {12.0, -51.0, 4.0, 6.0, 167.0, -68.0, -4.0, 24.0, -41.0};
+
+    printf("##################################### TEST 9 #####################################\n");
+
+    double *eigenvalues = matrix_eigenvalues(A, rows, columns);
+
+    for (int i = 0; i < rows; i++)
+	printf("%lf\t", eigenvalues[i]);
+
+    free(eigenvalues);
+    
+    printf("\n");
     
     return 0;
 

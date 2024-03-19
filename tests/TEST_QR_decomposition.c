@@ -31,7 +31,7 @@ int main() {
     free(QR_test->R);
 
     free(QR_test);
-
+    
     return 0;
 
 }

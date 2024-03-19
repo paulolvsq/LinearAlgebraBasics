@@ -106,4 +106,37 @@ double matrix_determinant(double *A, int rows, int columns) {
 
 }
 
+double *matrix_eigenvalues(double *A, int rows, int columns) {
 
+    // A (rows * columns) ||| Q (rows * rows) ||| R (rows * columns)
+    // A (m * n) ||| Q (m * m) ||| R (m * n)
+    // m > n with rank(A) = n    
+    
+    QR *QR_matrices = QR_decomposition(A, rows, columns);
+
+    double min = -INFINITY;
+
+    if (rows < columns)
+	min = rows;
+    else
+	min = columns;
+
+    int index = 0;
+    double *eigenvalues = malloc(min * sizeof(double));
+
+    for (int i = 0; i < rows; i++) {
+	for (int j = 0; j < columns; j++) {
+	    if (i == j) {
+		eigenvalues[index] = QR_matrices->R[i * columns + j];
+		index++;
+	    }
+	}
+    }
+
+    free(QR_matrices->Q);
+    free(QR_matrices->R);
+    free(QR_matrices);
+    
+    return eigenvalues;
+    
+}
