@@ -141,7 +141,61 @@ double *matrix_eigenvalues(double *A, int rows, int columns) {
     
 }
 
-double *matrix_inverse(double *A, int n) {
+double *forward_substitution(double *L, int d, double *b) {
+
+    double *c = malloc(d * sizeof(double));
+    for (int i = 0; i < d; i++)
+	c[i] = 0.0;
+
+    for (int i = 0; i < d; i++) {
+	c[i] = b[i];
+	for (int j = 0; j < i - 1; j++) {
+	    c[i] = c[i] - L[i * d + j] * c[j];
+	}
+	c[i] = c[i] / L[i * d + i];
+    }
+
+    return c;
+
+}
+
+double *backward_substitution(double *U, int d, double *c) {
+
+    double *x = malloc(d * sizeof(double));
+    for (int i = 0; i < d; i++)
+	x[i] = 0.0;
+
+    for (int i = d; i > 0; i--) {
+	x[i] = c[i];
+	for (int j = i + 1; j < d; j++) {
+	    x[i] = x[i] - U[i * d + j] * x[j];
+	}
+	x[i] = x[i] / U[i * d + i];
+    }
+
+    return x;
+    
+}
+
+double *matrix_inverse(double *A, int d) {
+
+    double *I = generate_identity_matrix(n);
+
+    LU *LU_matrix = LU_decomposition(A, d, d);
+
+    double *C = malloc(d * d * sizeof(double));
+    double *inverse = malloc(d * d * sizeof(double));
+
+    double *b_i = malloc(d * sizeof(double));
+    
+    for (int i = 0; i < d; i++) {
+	for (int j = 0; j < d; j++) {
+	    b_i[j * d] = I[j * d];
+	
+    
+}
+
+//double *matrix_inverse(double *A, int n) {
 
     // n by n square matrix A is called invertible if there exists an n by n square matrix B
     // such that AB = BA = I_n where I_n denotes the n by n identity matrix
@@ -191,4 +245,4 @@ function inverse_matrix_with_LU_decomposition(matrix L, matrix U):
 
     */
 
-}
+//}
