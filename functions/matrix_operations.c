@@ -179,7 +179,7 @@ double *backward_substitution(double *U, int d, double *c) {
 
 double *matrix_inverse(double *A, int d) {
 
-    double *I = generate_identity_matrix(n);
+    double *I = generate_identity_matrix(d);
 
     LU *LU_matrix = LU_decomposition(A, d, d);
 
@@ -187,11 +187,16 @@ double *matrix_inverse(double *A, int d) {
     double *inverse = malloc(d * d * sizeof(double));
 
     double *b_i = malloc(d * sizeof(double));
+
+    double *c_i;
     
     for (int i = 0; i < d; i++) {
 	for (int j = 0; j < d; j++) {
-	    b_i[j * d] = I[j * d];
+	    b_i[j] = I[j * d + i];
+	}
+	c_i = forward_substitution(LU_matrix->L, d, b_i);
 	
+    }
     
 }
 
