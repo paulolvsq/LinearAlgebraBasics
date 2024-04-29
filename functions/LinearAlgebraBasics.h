@@ -52,6 +52,7 @@ double matrix_norm(double *A, int rows, int columns);
 double frobenius_norm(double *A, int rows, int columns);
 double matrix_determinant(double *A, int rows, int columns);
 double *matrix_eigenvalues(double *A, int rows, int columns);
+double *matrix_inverse(double *A, int n);
 
 /* LU_decomposition.c */
 LU *create_LU(double *A, int rows, int columns);

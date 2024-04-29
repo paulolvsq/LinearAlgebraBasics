@@ -140,3 +140,55 @@ double *matrix_eigenvalues(double *A, int rows, int columns) {
     return eigenvalues;
     
 }
+
+double *matrix_inverse(double *A, int n) {
+
+    // n by n square matrix A is called invertible if there exists an n by n square matrix B
+    // such that AB = BA = I_n where I_n denotes the n by n identity matrix
+    // inversible => square matrix and non singular matrix, must have a determinant =/= 0
+    /*
+    function forward_substitution(matrix L, vector b):
+    dimension = size of L
+    Initialize vector c of size dimension to zeros
+
+    for i from 1 to dimension:
+        c[i] = b[i]
+        for j from 1 to i - 1:
+            c[i] = c[i] - L[i][j] * c[j]
+        c[i] = c[i] / L[i][i]
+
+    return c
+
+function backward_substitution(matrix U, vector c):
+    dimension = size of U
+    Initialize vector x of size dimension to zeros
+
+    for i from dimension downto 1:
+        x[i] = c[i]
+        for j from i + 1 to dimension:
+            x[i] = x[i] - U[i][j] * x[j]
+        x[i] = x[i] / U[i][i]
+
+    return x
+
+function inverse_matrix_with_LU_decomposition(matrix L, matrix U):
+    dimension = size of L or U
+    Create an identity matrix I of size dimension x dimension
+
+    // Step 1: Résoudre Lc = b pour chaque colonne de la matrice identité
+    for i from 1 to dimension:
+        Create vector b_i representing the i-th column of the identity matrix I
+        Solve the lower triangular system Lc = b_i using forward substitution to find c_i
+        Store c_i as the i-th column of a temporary matrix C
+
+    // Step 2: Résoudre Ux = c pour chaque colonne de la matrice C
+    for i from 1 to dimension:
+        Create vector c_i representing the i-th column of the matrix C
+        Solve the upper triangular system Ux = c_i using backward substitution to find x_i
+        Store x_i as the i-th column of the inverse matrix
+
+    return the inverse matrix
+
+    */
+
+}
