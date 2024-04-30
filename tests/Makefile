@@ -4,7 +4,7 @@ CFLAGS = -Wall -Werror
 LIB = LinearAlgebraBasics.so
 MATH = -lm
 
-all : TEST_generate_matrix TEST_sequential_matrix_product TEST_sequential_vector_matrix_product TEST_vector_operations TEST_matrix_operations TEST_LU_decomposition TEST_QR_decomposition
+all : TEST_generate_matrix TEST_sequential_matrix_product TEST_sequential_vector_matrix_product TEST_vector_operations TEST_matrix_operations TEST_LU_decomposition TEST_QR_decomposition TEST_matrix_inverse
 	./TEST_generate_matrix
 	./TEST_sequential_matrix_product
 	./TEST_sequential_vector_matrix_product
@@ -12,6 +12,7 @@ all : TEST_generate_matrix TEST_sequential_matrix_product TEST_sequential_vector
 	./TEST_matrix_operations
 	./TEST_LU_decomposition
 	./TEST_QR_decomposition
+	./TEST_matrix_inverse
 
 TEST_generate_matrix : TEST_generate_matrix.c
 	$(CC) $(CFLAGS) -o $@ $^ ./$(LIB)
@@ -34,8 +35,12 @@ TEST_LU_decomposition : TEST_LU_decomposition.c
 TEST_QR_decomposition : TEST_QR_decomposition.c
 	$(CC) $(CFLAGS) -o $@ $^ ./$(LIB) 
 
+TEST_matrix_inverse : TEST_matrix_inverse.c
+	$(CC) $(CFLAGS) -o $@ $^ ./$(LIB)
+
 clean :
 	rm -f *.o *~
 	rm -f LinearAlgebraBasics.so LinearAlgebraBasics.h
 	rm -f TEST_generate_matrix TEST_sequential_matrix_product TEST_sequential_vector_matrix_product
 	rm -f TEST_vector_operations TEST_matrix_operations TEST_LU_decomposition TEST_QR_decomposition
+	rm -f TEST_matrix_inverse

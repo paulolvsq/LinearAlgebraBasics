@@ -149,7 +149,7 @@ double *forward_substitution(double *L, int d, double *b) {
 
     for (int i = 0; i < d; i++) {
 	c[i] = b[i];
-	for (int j = 0; j < i - 1; j++) {
+	for (int j = 0; j < i; j++) {
 	    c[i] = c[i] - L[i * d + j] * c[j];
 	}
 	c[i] = c[i] / L[i * d + i];
@@ -165,13 +165,26 @@ double *backward_substitution(double *U, int d, double *c) {
     for (int i = 0; i < d; i++)
 	x[i] = 0.0;
 
-    for (int i = d; i > 0; i--) {
+    for (int i = d - 1; i >= 0; i--) {
 	x[i] = c[i];
 	for (int j = i + 1; j < d; j++) {
 	    x[i] = x[i] - U[i * d + j] * x[j];
 	}
 	x[i] = x[i] / U[i * d + i];
     }
+
+    return x;
+    
+}
+
+double *solve_LU_system(double *A, double *b, int d) {
+
+    LU *LU_matrix = LU_decomposition(A, d, d);
+
+    // Ly = b
+    double *y = forward_substitution(LU_matrix->L, d, b);
+    // Ux = y
+    double *x = backward_substitution(LU_matrix->U, d, y);
 
     return x;
     
@@ -189,14 +202,36 @@ double *matrix_inverse(double *A, int d) {
     double *b_i = malloc(d * sizeof(double));
 
     double *c_i;
+    double *x_i;
     
     for (int i = 0; i < d; i++) {
 	for (int j = 0; j < d; j++) {
 	    b_i[j] = I[j * d + i];
 	}
 	c_i = forward_substitution(LU_matrix->L, d, b_i);
-	
+	for (int j = 0; j < d; j++) {
+	    C[j * d + i] = c_i[j];
+	}
     }
+
+    for (int i = 0; i < d; i++) {
+	for (int j = 0; j < d; j++) {
+	    b_i[j] = C[j * d + i];
+	}
+	x_i = backward_substitution(LU_matrix->U, d, b_i);
+	for (int j = 0; j < d; j++) {
+	    inverse[j * d + i] = x_i[j];
+	}
+    }
+
+    free(I);
+    free(LU_matrix->L);
+    free(LU_matrix->U);
+    free(LU_matrix);
+    free(C);
+    free(b_i);
+    
+    return inverse;
     
 }
 

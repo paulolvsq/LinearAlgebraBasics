@@ -54,6 +54,7 @@ double matrix_determinant(double *A, int rows, int columns);
 double *matrix_eigenvalues(double *A, int rows, int columns);
 double *forward_substitution(double *L, int d, double *b);
 double *backward_substitution(double *U, int d, double *c);
+double *solve_LU_system(double *A, double *b, int d);
 double *matrix_inverse(double *A, int n);
 
 /* LU_decomposition.c */
