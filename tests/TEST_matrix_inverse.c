@@ -16,6 +16,8 @@ int main() {
     
     printf("\n");
 
+    free(res);
+    
     printf("##################################### TEST MATRIX INVERSE #####################################\n");
 
     double *inverse = matrix_inverse(A, d);
@@ -26,6 +28,8 @@ int main() {
 	}
 	printf("\n");
     }
+
+    free(inverse);
 
     return 0;
 

@@ -46,7 +46,6 @@ double matrix_trace(double *A, int dimension) {
 	for (int j = 0; j < dimension; j++) 
 	    if (i == j) trace += A[i * dimension + j];
 	
-
     return trace;
     
 }
@@ -68,6 +67,8 @@ double matrix_norm(double *A, int rows, int columns) {
 	sum = 0.0;
     }
 
+    free(TMP);
+    
     return max;
     
 }
@@ -186,6 +187,10 @@ double *solve_LU_system(double *A, double *b, int d) {
     // Ux = y
     double *x = backward_substitution(LU_matrix->U, d, y);
 
+    free(LU_matrix->L);
+    free(LU_matrix->U);
+    free(LU_matrix);
+    
     return x;
     
 }
