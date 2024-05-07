@@ -1,4 +1,3 @@
-FUNCTIONS_C = $(shell ls *.c)
 CC = gcc
 CFLAGS = -Wall -Werror
 LIB = LinearAlgebraBasics.so
