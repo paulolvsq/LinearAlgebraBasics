@@ -1,5 +1,4 @@
 #include "LinearAlgebraBasics.h"
-#include <math.h> 
 
 double *vectors_addition(double *X, double *Y, int dimension) {
 
