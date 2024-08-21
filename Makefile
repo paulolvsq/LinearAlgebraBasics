@@ -1,4 +1,4 @@
-MAKE = make
+MAKE = make -j
 
 all : execute
 
