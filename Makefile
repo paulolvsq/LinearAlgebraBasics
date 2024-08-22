@@ -1,8 +1,8 @@
 MAKE = make -j
 
-all : execute
+all : install
 
-execute :
+install :
 	cd functions && $(MAKE)
 	cd tests && $(MAKE)
 
