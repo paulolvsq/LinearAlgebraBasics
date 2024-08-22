@@ -11,4 +11,4 @@ clean :
 	cd functions && $(MAKE) clean
 	cd tests && $(MAKE) clean
 
-.PHONY : all execute clean
+.PHONY : all install clean
