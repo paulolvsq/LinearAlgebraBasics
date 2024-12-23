@@ -60,6 +60,7 @@ double *matrix_inverse(double *A, int n);
 /* LU_decomposition.c */
 LU *create_LU(double *A, int rows, int columns);
 LU *LU_decomposition(double *A, int rows, int columns);
+LU *LU_decomposition_parallel(double *A, int rows, int columns);
 
 /* QR_decomposition.c */
 QR *create_QR(double *A, int rows, int columns);

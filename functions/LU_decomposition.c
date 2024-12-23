@@ -51,3 +51,48 @@ LU *LU_decomposition(double *A, int rows, int columns) {
     return LU_decomposition;
 
 }
+
+LU *LU_decomposition_parallel(double *A, int rows, int columns) {
+
+    // ASSERTION : THE USER WILL ALWAYS GIVE MATRICES OF THE RIGHT SIZE AS INPUT
+
+        LU *LU_decomposition = create_LU(A, rows, columns);
+    
+    // Initialisation des matrices L et U
+#pragma omp parallel for collapse(2)
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < columns; j++) {
+            if (i == j)
+                LU_decomposition->L[i * columns + j] = 1;
+            else
+                LU_decomposition->L[i * columns + j] = 0;
+            LU_decomposition->U[i * columns + j] = 0;
+        }
+    }
+
+    // Décomposition LU
+    for (int i = 0; i < rows; i++) {
+        // Calcul de la matrice U
+#pragma omp parallel for
+        for (int j = i; j < columns; j++) {
+            double sum = 0.0;
+            for (int k = 0; k < i; k++) {
+                sum += LU_decomposition->L[i * columns + k] * LU_decomposition->U[k * columns + j];
+            }
+            LU_decomposition->U[i * columns + j] = A[i * columns + j] - sum;
+        }
+
+        // Calcul de la matrice L
+#pragma omp parallel for
+        for (int j = i + 1; j < rows; j++) {
+            double sum = 0.0;
+            for (int k = 0; k < i; k++) {
+                sum += LU_decomposition->L[j * columns + k] * LU_decomposition->U[k * columns + i];
+            }
+            LU_decomposition->L[j * columns + i] = (A[j * columns + i] - sum) / LU_decomposition->U[i * columns + i];
+        }
+    }
+
+    return LU_decomposition;
+    
+}

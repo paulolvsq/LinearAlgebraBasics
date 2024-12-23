@@ -1,4 +1,3 @@
-#include <stdio.h> 
 #include "LinearAlgebraBasics.h"
 
 int main() {

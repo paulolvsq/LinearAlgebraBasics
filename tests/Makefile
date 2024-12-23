@@ -2,6 +2,7 @@ CC = gcc
 CFLAGS = -Wall -Werror
 LIB = LinearAlgebraBasics.so
 MATH = -lm
+OMPFLAGS = -fopenmp
 
 all : TEST_generate_matrix TEST_sequential_matrix_product TEST_sequential_vector_matrix_product TEST_vector_operations TEST_matrix_operations TEST_LU_decomposition TEST_QR_decomposition TEST_matrix_inverse
 	./TEST_generate_matrix
@@ -14,28 +15,28 @@ all : TEST_generate_matrix TEST_sequential_matrix_product TEST_sequential_vector
 	./TEST_matrix_inverse
 
 TEST_generate_matrix : TEST_generate_matrix.c
-	$(CC) $(CFLAGS) -o $@ $^ ./$(LIB)
+	$(CC) $(CFLAGS) -o $@ $^ ./$(LIB) $(OMPFLAGS)
 
 TEST_sequential_matrix_product : TEST_sequential_matrix_product.c
-	$(CC) $(CFLAGS) -o $@ $^ ./$(LIB)
+	$(CC) $(CFLAGS) -o $@ $^ ./$(LIB) $(OMPFLAGS)
 
 TEST_sequential_vector_matrix_product : TEST_sequential_vector_matrix_product.c
-	$(CC) $(CFLAGS) -o $@ $^ ./$(LIB)
+	$(CC) $(CFLAGS) -o $@ $^ ./$(LIB) $(OMPFLAGS)
 
 TEST_vector_operations : TEST_vector_operations.c
-	$(CC) $(CFLAGS) -o $@ $^ ./$(LIB) $(MATH)
+	$(CC) $(CFLAGS) -o $@ $^ ./$(LIB) $(MATH) $(OMPFLAGS)
 
 TEST_matrix_operations : TEST_matrix_operations.c
-	$(CC) $(CFLAGS) -o $@ $^ ./$(LIB) 
+	$(CC) $(CFLAGS) -o $@ $^ ./$(LIB) $(OMPFLAGS)
 
 TEST_LU_decomposition : TEST_LU_decomposition.c
-	$(CC) $(CFLAGS) -o $@ $^ ./$(LIB) 
+	$(CC) $(CFLAGS) -o $@ $^ ./$(LIB) $(OMPFLAGS)
 
 TEST_QR_decomposition : TEST_QR_decomposition.c
-	$(CC) $(CFLAGS) -o $@ $^ ./$(LIB) 
+	$(CC) $(CFLAGS) -o $@ $^ ./$(LIB) $(OMPFLAGS)
 
 TEST_matrix_inverse : TEST_matrix_inverse.c
-	$(CC) $(CFLAGS) -o $@ $^ ./$(LIB)
+	$(CC) $(CFLAGS) -o $@ $^ ./$(LIB) $(OMPFLAGS)
 
 clean :
 	rm -f *.o *~
