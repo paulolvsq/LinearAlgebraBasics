@@ -2,8 +2,8 @@
 
 int main() {
 
-    int rows = 6000;
-    int columns = 6000;
+    int rows = 3000;
+    int columns = 3000;
 
     double *A = generate_matrix_double(rows, columns);
 
