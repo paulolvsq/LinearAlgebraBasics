@@ -40,6 +40,9 @@ double *sequential_vector_matrix_product(double *A, int A_rows, int A_columns, d
 /* parallel_vector_matrix_product.c */
 double *parallel_vector_matrix_product(double *A, int A_rows, int A_columns, double *X, double dimension);
 
+/* parallel_matrix_product.c */
+double *parallel_matrix_product(double *P, int P_rows, int P_columns, double *Q, int Q_rows, int Q_columns);
+
 /* vector_operations.c */
 double *vectors_addition(double *X, double *Y, int dimension);
 double *scalar_product(double *X, double *Y, int dimension);

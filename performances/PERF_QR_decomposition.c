@@ -3,8 +3,8 @@
 
 int main() {
 
-    int rows = 1000;
-    int columns = 1000;
+    int rows = 2000;
+    int columns = 2000;
 
     double *A = generate_matrix_double(rows, columns);
     double *B = malloc((rows * columns) * sizeof(double));
