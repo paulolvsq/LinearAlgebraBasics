@@ -65,5 +65,6 @@ LU *LU_decomposition_parallel(double *A, int rows, int columns);
 /* QR_decomposition.c */
 QR *create_QR(double *A, int rows, int columns);
 QR *QR_decomposition(double *A, int rows, int columns);
-
+QR *QR_decomposition_parallel(double *A, int rows, int columns);
+    
 #endif 

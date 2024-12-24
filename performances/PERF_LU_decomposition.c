@@ -6,7 +6,7 @@ int main() {
     int columns = 3000;
 
     double *A = generate_matrix_double(rows, columns);
-
+    
     printf("##################################### TEST LU DECOMPOSITION SEQUENTIAL #####################################\n");
 
     time_t begin = time(NULL);
@@ -15,11 +15,11 @@ int main() {
     
     time_t end = time(NULL);
 
+    printf("Elapsed time : %ld seconds.\n", (end - begin));
+
     free(LU_sequential->L);
     free(LU_sequential->U);
     free(LU_sequential);
-
-    printf("Elapsed time : %ld seconds.\n", (end - begin));
 
     printf("##################################### TEST LU DECOMPOSITION PARALLEL #####################################\n");
 

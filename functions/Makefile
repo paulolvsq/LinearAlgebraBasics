@@ -30,7 +30,7 @@ LU_decomposition.o : LU_decomposition.c
 	$(CC) $(CFLAGS) $(OMPFLAGS) -c -o $@ $^
 
 QR_decomposition.o : QR_decomposition.c
-	$(CC) $(CFLAGS) -c -o $@ $^ $(MATH)
+	$(CC) $(CFLAGS) $(OMPFLAGS) -c -o $@ $^ $(MATH)
 
 clean :
 	rm -f *.o *~ 

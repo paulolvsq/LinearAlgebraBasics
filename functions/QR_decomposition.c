@@ -50,3 +50,39 @@ QR *QR_decomposition(double *A, int rows, int columns) {
     return QR_decomposition;
     
 }
+
+QR *QR_decomposition_parallel(double *A, int rows, int columns) {
+
+    QR *QR_decomposition = create_QR(A, rows, columns);
+    
+    // ASSERTION : THE USER WILL ALWAYS GIVE MATRICES OF THE RIGHT SIZE AS INPUT
+    // MODIFIED GRAM SCHMIDT METHOD PARALLEL VERSION
+
+    for (int k = 0; k < columns; k++) {
+	double s = 0.0;
+#pragma omp parallel for reduction(+:s)
+	for (int j = 0; j < rows; j++) {
+	    s += pow(QR_decomposition->A[j * columns + k], 2);
+	}
+	QR_decomposition->R[k * columns + k] = sqrt(s);
+#pragma omp parallel for
+	for (int j = 0; j < rows; j++) {
+	    QR_decomposition->Q[j * columns + k] = QR_decomposition->A[j * columns + k] / QR_decomposition->R[k * columns + k];
+	}
+	for (int i = k + 1; i < columns; i++) {
+	    s = 0.0;
+#pragma omp parallel for reduction(+:s)
+	    for (int j = 0; j < rows; j++) {
+		s += QR_decomposition->A[j * columns + i] * QR_decomposition->Q[j * columns + k];
+	    }
+	    QR_decomposition->R[k * columns + i] = s;
+#pragma omp parallel for
+	    for (int j = 0; j < rows; j++) {
+		QR_decomposition->A[j * columns + i] = QR_decomposition->A[j * columns + i] - QR_decomposition->R[k * columns + i] * QR_decomposition->Q[j * columns + k];
+	    }
+	}
+    }
+
+    return QR_decomposition;
+
+}

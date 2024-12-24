@@ -1,5 +1,5 @@
 #include "LinearAlgebraBasics.h"
-#define DOUBLE 10.0
+#define DOUBLE 100.0
 
 double *generate_matrix_double (int rows, int columns) {
 
