@@ -61,7 +61,7 @@ int main() {
 
     free(LU_test2);
 
-    printf("##################################### TEST LU DECOMPOSITION PARALLEL #####################################\n");
+    printf("##################################### TEST LU DECOMPOSITION PARALLEL 1 #####################################\n");
 
     LU *LU_test_parallel = LU_decomposition_parallel(A, rows, columns);
 
@@ -87,6 +87,33 @@ int main() {
     free(LU_test_parallel->U);
 
     free(LU_test_parallel);
+
+    printf("##################################### TEST LU DECOMPOSITION PARALLEL 2 #####################################\n");
+
+    LU *LU_test_parallel2 = LU_decomposition_parallel(B, rows, columns);
+
+    printf("L =\n");
+
+    for (int i = 0; i < rows; i++) {
+	for (int j = 0; j < columns; j++) {
+	    printf("%lf\t", LU_test_parallel2->L[i * columns + j]);
+	}
+	printf("\n");
+    }
+
+    printf("U =\n");
+
+    for (int i = 0; i < rows; i++) {
+	for (int j = 0; j < columns; j++) {
+	    printf("%lf\t", LU_test_parallel2->U[i * columns + j]);
+	}
+	printf("\n");
+    }
+
+    free(LU_test_parallel2->L);
+    free(LU_test_parallel2->U);
+
+    free(LU_test_parallel2);
     
     
     return 0;

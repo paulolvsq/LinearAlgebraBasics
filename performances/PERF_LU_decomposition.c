@@ -2,8 +2,8 @@
 
 int main() {
 
-    int rows = 2000;
-    int columns = 2000;
+    int rows = 6000;
+    int columns = 6000;
 
     double *A = generate_matrix_double(rows, columns);
 
@@ -15,7 +15,6 @@ int main() {
     
     time_t end = time(NULL);
 
-    free(LU_sequential->A);
     free(LU_sequential->L);
     free(LU_sequential->U);
     free(LU_sequential);
@@ -27,13 +26,14 @@ int main() {
     begin = time(NULL);
     
     LU *LU_parallel = LU_decomposition_parallel(A, rows, columns);
-    
+
     end = time(NULL);
 
-    free(LU_parallel->A);
+    printf("Elapsed time : %ld seconds.\n", (end - begin));
+    
     free(LU_parallel->L);
     free(LU_parallel->U);
-    free(LU_parallel);    
+    free(LU_parallel);  
     
     return 0;
 

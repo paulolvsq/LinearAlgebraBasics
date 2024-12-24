@@ -59,7 +59,7 @@ LU *LU_decomposition_parallel(double *A, int rows, int columns) {
         LU *LU_decomposition = create_LU(A, rows, columns);
     
     // Initialisation des matrices L et U
-#pragma omp parallel for collapse(2)
+#pragma omp parallel for
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < columns; j++) {
             if (i == j)
@@ -87,7 +87,7 @@ LU *LU_decomposition_parallel(double *A, int rows, int columns) {
         for (int j = i + 1; j < rows; j++) {
             double sum = 0.0;
             for (int k = 0; k < i; k++) {
-                sum += LU_decomposition->L[j * columns + k] * LU_decomposition->U[k * columns + i];
+		sum += LU_decomposition->L[j * columns + k] * LU_decomposition->U[k * columns + i];
             }
             LU_decomposition->L[j * columns + i] = (A[j * columns + i] - sum) / LU_decomposition->U[i * columns + i];
         }
