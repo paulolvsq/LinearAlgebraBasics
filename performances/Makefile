@@ -4,9 +4,10 @@ LIB = LinearAlgebraBasics.so
 MATH = -lm
 OMPFLAGS = -fopenmp
 
-all : PERF_LU_decomposition PERF_QR_decomposition
+all : PERF_LU_decomposition PERF_QR_decomposition PERF_vector_matrix_product
 	./PERF_LU_decomposition
 	./PERF_QR_decomposition
+	./PERF_vector_matrix_product
 
 PERF_LU_decomposition : PERF_LU_decomposition.c
 	$(CC) $(CFLAGS) -o $@ $^ ./$(LIB) $(OMPFLAGS)
@@ -14,7 +15,10 @@ PERF_LU_decomposition : PERF_LU_decomposition.c
 PERF_QR_decomposition : PERF_QR_decomposition.c
 	$(CC) $(CFLAGS) -o $@ $^ ./$(LIB) $(OMPFLAGS)
 
+PERF_vector_matrix_product : PERF_vector_matrix_product.c 
+	$(CC) $(CFLAGS) -o $@ $^ ./$(LIB) $(OMPFLAGS)
+
 clean :
 	rm -f *.o *~
 	rm -f LinearAlgebraBasics.so LinearAlgebraBasics.h
-	rm -f PERF_LU_decomposition PERF_QR_decomposition
+	rm -f PERF_LU_decomposition PERF_QR_decomposition PERF_vector_matrix_product

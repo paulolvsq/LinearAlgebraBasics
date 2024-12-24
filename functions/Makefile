@@ -8,7 +8,7 @@ all : LinearAlgebraBasics.so LinearAlgebraBasics.h
 	cp $^ ../tests
 	cp $^ ../performances
 
-LinearAlgebraBasics.so : generate_matrix.o sequential_matrix_product.o sequential_vector_matrix_product.o vector_operations.o matrix_operations.o LU_decomposition.o QR_decomposition.o 
+LinearAlgebraBasics.so : generate_matrix.o sequential_matrix_product.o sequential_vector_matrix_product.o vector_operations.o matrix_operations.o LU_decomposition.o QR_decomposition.o parallel_vector_matrix_product.o
 	$(CC) $(CFLAGS) -shared $^ -o $@ $(MATH)
 
 generate_matrix.o : generate_matrix.c
@@ -19,6 +19,9 @@ sequential_matrix_product.o : sequential_matrix_product.c
 
 sequential_vector_matrix_product.o : sequential_vector_matrix_product.c
 	$(CC) $(CFLAGS) -c -o $@ $^
+
+parallel_vector_matrix_product.o : parallel_vector_matrix_product.c
+	$(CC) $(CFLAGS) $(OMPFLAGS) -c -o $@ $^
 
 vector_operations.o : vector_operations.c
 	$(CC) $(CFLAGS) -c -o $@ $^ $(MATH)
