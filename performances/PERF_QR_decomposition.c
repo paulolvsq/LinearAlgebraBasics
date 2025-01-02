@@ -41,7 +41,6 @@ int main() {
     free(QR_sequential->Q);
     free(QR_sequential->R);
     free(QR_sequential);
-
     
     return 0;
 
