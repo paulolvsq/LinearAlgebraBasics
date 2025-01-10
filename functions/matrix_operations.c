@@ -107,14 +107,28 @@ double matrix_determinant(double *A, int rows, int columns) {
 
 }
 
-double *matrix_eigenvalues(double *A, int rows, int columns) {
+int has_converged(double *H, int n, double tol) {
+
+    // Suppose that we only use square matrix
+
+    for (int i = 1; i < n; i++) {
+        for (int j = 0; j < i; j++) {
+            if (fabs(H[i * n + j]) > tol) {
+                return 0;
+            }
+        }
+    }
+    
+    return 1;
+		 
+}
+
+double *matrix_eigenvalues(double *A, int rows, int columns, int max_iter, double tol) {
 
     // A (rows * columns) ||| Q (rows * rows) ||| R (rows * columns)
     // A (m * n) ||| Q (m * m) ||| R (m * n)
     // m > n with rank(A) = n    
     
-    QR *QR_matrices = QR_decomposition(A, rows, columns);
-
     double min = -INFINITY;
 
     if (rows < columns)
@@ -122,22 +136,37 @@ double *matrix_eigenvalues(double *A, int rows, int columns) {
     else
 	min = columns;
 
-    int index = 0;
-    double *eigenvalues = malloc(min * sizeof(double));
+    int size = (int) (min);
+    
+    double *H = malloc(rows * columns * sizeof(double));
 
-    for (int i = 0; i < rows; i++) {
-	for (int j = 0; j < columns; j++) {
-	    if (i == j) {
-		eigenvalues[index] = QR_matrices->R[i * columns + j];
-		index++;
-	    }
-	}
+    for (int i = 0; i < rows * columns; i++)
+	H[i] = A[i];
+
+    int iter = 0;
+
+    while (iter < max_iter && !has_converged(H, rows, tol)) {
+
+	QR *QR_H = QR_decomposition(H, rows, columns);
+
+	for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                H[i * columns + j] = 0.0;
+                for (int k = 0; k < columns; k++) {
+                    H[i * columns + j] += QR_H->R[i * columns + k] * QR_H->Q[k * columns + j];
+                }
+            }
+        }
+        iter++;
     }
 
-    free(QR_matrices->Q);
-    free(QR_matrices->R);
-    free(QR_matrices);
-    
+    double *eigenvalues = malloc(size * sizeof(double));
+    for (int i = 0; i < size; i++) {
+        eigenvalues[i] = H[i * size + i];
+    }
+
+    free(H);
+        
     return eigenvalues;
     
 }

@@ -97,7 +97,7 @@ int main() {
 
     printf("##################################### TEST 9 #####################################\n");
 
-    double *eigenvalues = matrix_eigenvalues(A, rows, columns);
+    double *eigenvalues = matrix_eigenvalues(A, rows, columns, 1000, 1E-20);
 
     for (int i = 0; i < rows; i++)
 	printf("%lf\t", eigenvalues[i]);

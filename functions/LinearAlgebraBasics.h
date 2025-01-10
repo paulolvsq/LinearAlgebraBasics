@@ -57,11 +57,12 @@ double matrix_trace(double *A, int dimension);
 double matrix_norm(double *A, int rows, int columns);
 double frobenius_norm(double *A, int rows, int columns);
 double matrix_determinant(double *A, int rows, int columns);
-double *matrix_eigenvalues(double *A, int rows, int columns);
+double *matrix_eigenvalues(double *A, int rows, int columns, int max_iter, double tol);
 double *forward_substitution(double *L, int d, double *b);
 double *backward_substitution(double *U, int d, double *c);
 double *solve_LU_system(double *A, double *b, int d);
 double *matrix_inverse(double *A, int n);
+int has_converged(double *H, int n, double tol);
 
 /* LU_decomposition.c */
 LU *create_LU(double *A, int rows, int columns);
