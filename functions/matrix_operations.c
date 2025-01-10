@@ -158,13 +158,14 @@ double *matrix_eigenvalues(double *A, int rows, int columns, int max_iter, doubl
             }
         }
         iter++;
+	
     }
 
     double *eigenvalues = malloc(size * sizeof(double));
-    for (int i = 0; i < size; i++) {
+    
+    for (int i = 0; i < size; i++) 
         eigenvalues[i] = H[i * size + i];
-    }
-
+    
     printf("Converged in %d iteration(s).\n", iter);
 
     free(H);
