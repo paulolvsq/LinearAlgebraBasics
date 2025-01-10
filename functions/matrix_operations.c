@@ -165,6 +165,8 @@ double *matrix_eigenvalues(double *A, int rows, int columns, int max_iter, doubl
         eigenvalues[i] = H[i * size + i];
     }
 
+    printf("Converged in %d iteration(s).\n", iter);
+
     free(H);
         
     return eigenvalues;
