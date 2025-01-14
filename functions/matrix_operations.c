@@ -139,14 +139,17 @@ double *matrix_eigenvalues(double *A, int rows, int columns, int max_iter, doubl
     int size = (int) (min);
     
     double *H = malloc(rows * columns * sizeof(double));
-
-    for (int i = 0; i < rows * columns; i++)
+    
+    for (int i = 0; i < rows * columns; i++) {
 	H[i] = A[i];
+    }
 
     int iter = 0;
 
     while (iter < max_iter && !has_converged(H, rows, tol)) {
 
+	printf("iter : %d\n", iter);
+	
 	QR *QR_H = QR_decomposition(H, rows, columns);
 
 	for (int i = 0; i < rows; i++) {
@@ -154,6 +157,7 @@ double *matrix_eigenvalues(double *A, int rows, int columns, int max_iter, doubl
                 H[i * columns + j] = 0.0;
                 for (int k = 0; k < columns; k++) {
                     H[i * columns + j] += QR_H->R[i * columns + k] * QR_H->Q[k * columns + j];
+		    printf("H[%d * 6 + %d] = %f\n", i, j, H[i * columns + j]);
                 }
             }
         }
@@ -163,8 +167,9 @@ double *matrix_eigenvalues(double *A, int rows, int columns, int max_iter, doubl
 
     double *eigenvalues = malloc(size * sizeof(double));
     
-    for (int i = 0; i < size; i++) 
+    for (int i = 0; i < size; i++) {
         eigenvalues[i] = H[i * size + i];
+    }
     
     printf("Converged in %d iteration(s).\n", iter);
 
