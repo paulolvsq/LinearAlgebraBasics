@@ -30,6 +30,10 @@ int main() {
 	}
 	printf("\n");
     }
+
+    free(QR_test->Q);
+    free(QR_test->R);
+    free(QR_test);
     
     printf("##################################### TEST QR DECOMPOSITION PARALLEL #####################################\n");
     
@@ -52,10 +56,6 @@ int main() {
 	}
 	printf("\n");
     }
-
-    free(QR_test->Q);
-    free(QR_test->R);
-    free(QR_test);
     
     free(B);
     

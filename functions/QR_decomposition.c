@@ -1,4 +1,5 @@
 #include "LinearAlgebraBasics.h"
+#include <string.h>
 
 QR *create_QR(double *A, int rows, int columns) {
 
@@ -10,8 +11,11 @@ QR *create_QR(double *A, int rows, int columns) {
 
     QR_decomposition->rows = rows;
     QR_decomposition->columns = columns;
-    
-    QR_decomposition->A = A;
+
+    QR_decomposition->A = malloc(rows * columns * sizeof(double));
+
+    memcpy(QR_decomposition->A, A, rows * columns * sizeof(double));
+
     QR_decomposition->Q = malloc(rows * rows * sizeof(double));
     QR_decomposition->R = malloc(columns * rows * sizeof(double));
 

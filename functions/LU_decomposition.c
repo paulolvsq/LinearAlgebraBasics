@@ -1,4 +1,5 @@
 #include "LinearAlgebraBasics.h"
+#include <string.h>
 
 LU *create_LU(double *A, int rows, int columns) {
 
@@ -6,8 +7,11 @@ LU *create_LU(double *A, int rows, int columns) {
 
     LU_decomposition->rows = rows;
     LU_decomposition->columns = columns;
+
+    LU_decomposition->A = malloc(rows * columns * sizeof(double));
+
+    memcpy(LU_decomposition->A, A, rows * columns * sizeof(double));
     
-    LU_decomposition->A = A;
     LU_decomposition->L = malloc(rows * columns * sizeof(double));
     LU_decomposition->U = malloc(rows * columns * sizeof(double));
     
