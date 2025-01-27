@@ -96,3 +96,13 @@ LU *LU_decomposition_parallel(double *A, int rows, int columns) {
     return LU_decomposition;
     
 }
+
+void LU_free(LU *LU_decomposition) {
+
+    free(LU_decomposition->A);
+    free(LU_decomposition->L);
+    free(LU_decomposition->U);
+
+    free(LU_decomposition);
+
+}

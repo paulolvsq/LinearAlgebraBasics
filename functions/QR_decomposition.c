@@ -90,3 +90,13 @@ QR *QR_decomposition_parallel(double *A, int rows, int columns) {
     return QR_decomposition;
 
 }
+
+void QR_free(QR *QR_decomposition) {
+
+    free(QR_decomposition->A);
+    free(QR_decomposition->Q);
+    free(QR_decomposition->R);
+
+    free(QR_decomposition);
+
+}

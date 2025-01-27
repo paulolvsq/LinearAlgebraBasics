@@ -68,10 +68,12 @@ int has_converged(double *H, int n, double tol);
 LU *create_LU(double *A, int rows, int columns);
 LU *LU_decomposition(double *A, int rows, int columns);
 LU *LU_decomposition_parallel(double *A, int rows, int columns);
+void LU_free(LU *LU_decomposition);
 
 /* QR_decomposition.c */
 QR *create_QR(double *A, int rows, int columns);
 QR *QR_decomposition(double *A, int rows, int columns);
 QR *QR_decomposition_parallel(double *A, int rows, int columns);
-    
+void QR_free(QR *QR_decomposition);
+
 #endif 
