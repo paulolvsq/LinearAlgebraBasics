@@ -60,7 +60,7 @@ LU *LU_decomposition_parallel(double *A, int rows, int columns) {
 
     // ASSERTION : THE USER WILL ALWAYS GIVE MATRICES OF THE RIGHT SIZE AS INPUT
 
-        LU *LU_decomposition = create_LU(A, rows, columns);
+    LU *LU_decomposition = create_LU(A, rows, columns);
     
 #pragma omp parallel for
     for (int i = 0; i < rows; i++) {

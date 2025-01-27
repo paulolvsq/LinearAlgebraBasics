@@ -101,7 +101,7 @@ int main() {
 	printf("\n");
     }
 
-    LU_free(LU_test_parallel2);    
+    LU_free(LU_test_parallel2);
     
     return 0;
 

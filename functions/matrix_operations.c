@@ -181,6 +181,7 @@ double *matrix_eigenvalues(double *A, int rows, int columns, int max_iter, doubl
 double *forward_substitution(double *L, int d, double *b) {
 
     double *c = malloc(d * sizeof(double));
+
     for (int i = 0; i < d; i++)
 	c[i] = 0.0;
 
@@ -199,6 +200,7 @@ double *forward_substitution(double *L, int d, double *b) {
 double *backward_substitution(double *U, int d, double *c) {
 
     double *x = malloc(d * sizeof(double));
+
     for (int i = 0; i < d; i++)
 	x[i] = 0.0;
 
@@ -223,9 +225,9 @@ double *solve_LU_system(double *A, double *b, int d) {
     // Ux = y
     double *x = backward_substitution(LU_matrix->U, d, y);
 
-    free(LU_matrix->L);
-    free(LU_matrix->U);
-    free(LU_matrix);
+    LU_free(LU_matrix);
+    
+    free(y);
     
     return x;
     
@@ -266,11 +268,10 @@ double *matrix_inverse(double *A, int d) {
     }
 
     free(I);
-    free(LU_matrix->L);
-    free(LU_matrix->U);
-    free(LU_matrix);
     free(C);
     free(b_i);
+
+    LU_free(LU_matrix);
     
     return inverse;
     
