@@ -255,6 +255,7 @@ double *matrix_inverse(double *A, int d) {
 	for (int j = 0; j < d; j++) {
 	    C[j * d + i] = c_i[j];
 	}
+	free(c_i);
     }
 
     for (int i = 0; i < d; i++) {
@@ -265,6 +266,7 @@ double *matrix_inverse(double *A, int d) {
 	for (int j = 0; j < d; j++) {
 	    inverse[j * d + i] = x_i[j];
 	}
+	free(x_i);
     }
 
     free(I);
