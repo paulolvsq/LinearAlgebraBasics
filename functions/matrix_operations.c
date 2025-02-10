@@ -32,7 +32,7 @@ double *matrix_transpose(double *A, int rows, int columns) {
 
     for (int i = 0; i < columns; i++)
 	for (int j = 0; j < rows; j++)
-	    matrix[i * rows + j] = A[i * rows + j];
+	    matrix[i * rows + j] = A[j * rows + i];
 
     return matrix;
 
@@ -99,9 +99,7 @@ double matrix_determinant(double *A, int rows, int columns) {
 	for (int j = 0; j < columns; j++)
 	    if (i == j) determinant *= LU_matrices->U[i * columns + i];
 
-    free(LU_matrices->L);
-    free(LU_matrices->U);
-    free(LU_matrices);
+    LU_free(LU_matrices);
     
     return determinant;
 
@@ -161,7 +159,7 @@ double *matrix_eigenvalues(double *A, int rows, int columns, int max_iter, doubl
             }
         }
         iter++;
-	
+	QR_free(QR_H);
     }
 
     double *eigenvalues = malloc(size * sizeof(double));
