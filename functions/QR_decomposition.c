@@ -5,9 +5,11 @@ QR *create_QR(double *A, int rows, int columns) {
 
     QR *QR_decomposition = malloc(sizeof(QR));
 
-    // A (rows * columns) ||| Q (rows * rows) ||| R (rows * columns)
-    // A (m * n) ||| Q (m * m) ||| R (m * n)
+    // A (rows * columns) ||| Q (rows * columns) ||| R (columns * columns)
+    // A (m * n) ||| Q (m * n) ||| R (n * n)
     // m > n with rank(A) = n
+    // to be coherent with memory access in QR_decomposition functions
+    // mathematically, Q is (rows * columns) and R is (columns * columns)
 
     QR_decomposition->rows = rows;
     QR_decomposition->columns = columns;
@@ -16,24 +18,27 @@ QR *create_QR(double *A, int rows, int columns) {
 
     memcpy(QR_decomposition->A, A, rows * columns * sizeof(double));
 
-    QR_decomposition->Q = malloc(rows * rows * sizeof(double));
-    QR_decomposition->R = malloc(columns * rows * sizeof(double));
+    QR_decomposition->Q = malloc(rows * columns * sizeof(double));
+    QR_decomposition->R = malloc(columns * columns * sizeof(double));
 
     return QR_decomposition;
 
 }
 
 QR *QR_decomposition(double *A, int rows, int columns) {
-
+    
     QR *QR_decomposition = create_QR(A, rows, columns);
 
     // ASSERTION : THE USER WILL ALWAYS GIVE MATRICES OF THE RIGHT SIZE AS INPUT
     // MODIFIED GRAM SCHMIDT METHOD
 
+    double val;
+    
     for (int k = 0; k < columns; k++) {
 	double s = 0.0;
 	for (int j = 0; j < rows; j++) {
-	    s += pow(QR_decomposition->A[j * columns + k], 2);
+	    val = QR_decomposition->A[j * columns + k];
+	    s += val * val;
 	}
 	QR_decomposition->R[k * columns + k] = sqrt(s);
 	for (int j = 0; j < rows; j++) {
@@ -62,11 +67,14 @@ QR *QR_decomposition_parallel(double *A, int rows, int columns) {
     // ASSERTION : THE USER WILL ALWAYS GIVE MATRICES OF THE RIGHT SIZE AS INPUT
     // MODIFIED GRAM SCHMIDT METHOD PARALLEL VERSION
 
+    double val;
+    
     for (int k = 0; k < columns; k++) {
 	double s = 0.0;
 #pragma omp parallel for reduction(+:s)
 	for (int j = 0; j < rows; j++) {
-	    s += pow(QR_decomposition->A[j * columns + k], 2);
+	    val = QR_decomposition->A[j * columns + k];
+	    s += val * val;
 	}
 	QR_decomposition->R[k * columns + k] = sqrt(s);
 #pragma omp parallel for
