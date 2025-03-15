@@ -13,4 +13,4 @@ clean :
 	cd tests && $(MAKE) clean
 	cd performances && $(MAKE) clean
 
-.PHONY : all install clean
+.PHONY : all install cleanMAKE = make -j
