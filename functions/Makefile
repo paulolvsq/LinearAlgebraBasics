@@ -10,13 +10,13 @@ ifeq ($(OS), Darwin)
     endif
     SDK_PATH := $(shell xcrun --show-sdk-path)
     CC = $(GCC)
-    CFLAGS = -Wall -Werror -isysroot $(SDK_PATH) -fopenmp
-    LDFLAGS = -lm -lgomp
+    CFLAGS = -Wall -Werror -isysroot $(SDK_PATH) -fopenmp -lm
+    OMPFLAGS = -lgomp
 else
     # Configuration standard pour Linux
     CC = gcc
-    CFLAGS = -Wall -Werror -fopenmp
-    LDFLAGS = -lm
+    CFLAGS = -Wall -Werror -fopenmp -fPIC -lm
+    OMPFLAGS = 
 endif
 
 LIB = LinearAlgebraBasics.so
