@@ -35,10 +35,10 @@ double *generate_identity_matrix (int dimension);
 double *sequential_matrix_product(double *P, int P_rows, int P_columns, double *Q, int Q_rows, int Q_columns);
 
 /* sequential_vector_matrix_product.c */
-double *sequential_vector_matrix_product(double *A, int A_rows, int A_columns, double *X, double dimension); 
+double *sequential_vector_matrix_product(double *A, int A_rows, int A_columns, double *X, int dimension); 
 
 /* parallel_vector_matrix_product.c */
-double *parallel_vector_matrix_product(double *A, int A_rows, int A_columns, double *X, double dimension);
+double *parallel_vector_matrix_product(double *A, int A_rows, int A_columns, double *X, int dimension);
 
 /* parallel_matrix_product.c */
 double *parallel_matrix_product(double *P, int P_rows, int P_columns, double *Q, int Q_rows, int Q_columns);

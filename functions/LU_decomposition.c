@@ -3,34 +3,62 @@
 
 LU *create_LU(double *A, int rows, int columns) {
 
+    if (rows <= 0 || columns <= 0) {
+        fprintf(stderr, "Error: Invalid dimensions for LU decomposition (rows=%d, columns=%d). Both must be strictly positive.\n", rows, columns);
+        return NULL;
+    }
+
+    if (!A) {
+        fprintf(stderr, "Error: Null pointer detected for input matrix in create_LU.\n");
+        return NULL;
+    }
+
     LU *LU_decomposition = malloc(sizeof(LU));
+
+    if (!LU_decomposition) {
+        fprintf(stderr, "Error: Memory allocation failed for LU structure.\n");
+        return NULL;
+    }
 
     LU_decomposition->rows = rows;
     LU_decomposition->columns = columns;
 
     LU_decomposition->A = malloc(rows * columns * sizeof(double));
-
-    memcpy(LU_decomposition->A, A, rows * columns * sizeof(double));
-    
     LU_decomposition->L = malloc(rows * columns * sizeof(double));
     LU_decomposition->U = malloc(rows * columns * sizeof(double));
-    
+
+    if (!LU_decomposition->A || !LU_decomposition->L || !LU_decomposition->U) {
+        fprintf(stderr, "Error: Memory allocation failed for matrices in create_LU.\n");
+        free(LU_decomposition->A);
+        free(LU_decomposition->L);
+        free(LU_decomposition->U);
+        free(LU_decomposition);
+        return NULL;
+    }
+
+    memcpy(LU_decomposition->A, A, rows * columns * sizeof(double));
+
     return LU_decomposition;
 
 }
 
 LU *LU_decomposition(double *A, int rows, int columns) {
-
-    // ASSERTION : THE USER WILL ALWAYS GIVE MATRICES OF THE RIGHT SIZE AS INPUT
-    
+ 
     LU *LU_decomposition = create_LU(A, rows, columns);
+
+    if (!LU_decomposition) {
+        fprintf(stderr, "Error: Failed to create LU decomposition structure.\n");
+        return NULL;
+    }
 
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < columns; j++) {
-            if (i == j)
+            if (i == j) {
                 LU_decomposition->L[i * columns + j] = 1;
-            else
+	    }
+            else {
                 LU_decomposition->L[i * columns + j] = 0;
+	    }
             LU_decomposition->U[i * columns + j] = 0;
         }
     }
@@ -61,14 +89,21 @@ LU *LU_decomposition_parallel(double *A, int rows, int columns) {
     // ASSERTION : THE USER WILL ALWAYS GIVE MATRICES OF THE RIGHT SIZE AS INPUT
 
     LU *LU_decomposition = create_LU(A, rows, columns);
+
+    if (!LU_decomposition) {
+        fprintf(stderr, "Error: Failed to create LU decomposition structure.\n");
+        return NULL;
+    }
     
 #pragma omp parallel for
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < columns; j++) {
-            if (i == j)
+            if (i == j) {
                 LU_decomposition->L[i * columns + j] = 1;
-            else
+	    }
+	    else {
                 LU_decomposition->L[i * columns + j] = 0;
+	    }
             LU_decomposition->U[i * columns + j] = 0;
         }
     }
@@ -99,6 +134,8 @@ LU *LU_decomposition_parallel(double *A, int rows, int columns) {
 
 void LU_free(LU *LU_decomposition) {
 
+    if (!LU_decomposition) return;
+    
     free(LU_decomposition->A);
     free(LU_decomposition->L);
     free(LU_decomposition->U);
