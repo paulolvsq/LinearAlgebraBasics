@@ -1,5 +1,19 @@
 #include "LinearAlgebraBasics.h"
 
+/**
+ * @brief Computes the element-wise addition of two vectors X and Y.
+ *
+ * This function calculates the vector result = X + Y, where X and Y are vectors
+ * of the same dimension.
+ *
+ * @param X Pointer to the first input vector (size: dimension).
+ * @param Y Pointer to the second input vector (size: dimension).
+ * @param dimension Dimension of the vectors (must be positive).
+ *
+ * @return Pointer to the resulting vector on success, or NULL on failure due to invalid dimension,
+ *         null pointers, or memory allocation errors.
+ */
+
 double *vectors_addition(double *X, double *Y, int dimension) {
 
     if (dimension <= 0) {
@@ -25,6 +39,20 @@ double *vectors_addition(double *X, double *Y, int dimension) {
     return vector;
     
 }
+
+/**
+ * @brief Computes the element-wise product of two vectors X and Y.
+ *
+ * This function calculates the vector result = X .* Y, where .* denotes
+ * element-wise multiplication.
+ *
+ * @param X Pointer to the first input vector (size: dimension).
+ * @param Y Pointer to the second input vector (size: dimension).
+ * @param dimension Dimension of the vectors (must be positive).
+ *
+ * @return Pointer to the resulting vector on success, or NULL on failure due to invalid dimension,
+ *         null pointers, or memory allocation errors.
+ */
 
 double *scalar_product(double *X, double *Y, int dimension) {
 
@@ -52,6 +80,19 @@ double *scalar_product(double *X, double *Y, int dimension) {
 
 }
 
+/**
+ * @brief Computes the cross product of two 3-dimensional vectors X and Y.
+ *
+ * This function calculates the vector result = X x Y, where x denotes
+ * the cross product. It assumes that both input vectors are 3-dimensional.
+ *
+ * @param X Pointer to the first input vector (size: 3).
+ * @param Y Pointer to the second input vector (size: 3).
+ *
+ * @return Pointer to the resulting vector (size: 3) on success, or NULL on failure due to null pointers
+ *         or memory allocation errors.
+ */
+
 double *vector_product(double *X, double *Y) {
 
     // ONLY IN DIMENSION 3
@@ -77,6 +118,19 @@ double *vector_product(double *X, double *Y) {
     return vector;
        
 }
+
+/**
+ * @brief Computes the Euclidean norm (length) of a given vector X.
+ *
+ * This function calculates the norm ||X|| = sqrt(X_1^2 + X_2^2 + ... + X_n^2),
+ * where n is the dimension of the vector.
+ *
+ * @param X Pointer to the input vector (size: dimension).
+ * @param dimension Dimension of the vector (must be positive).
+ *
+ * @return The Euclidean norm of the vector on success, or -1.0 on failure due to invalid dimension
+ *         or null pointers.
+ */
 
 double vector_norm(double *X, int dimension) {
 

@@ -1,6 +1,20 @@
 #include "LinearAlgebraBasics.h"
 #include <string.h>
 
+/**
+ * @brief Allocates and initializes an LU decomposition structure.
+ *
+ * This function creates an LU decomposition structure for a given matrix A
+ * and initializes its components (L, U, and A).
+ *
+ * @param A Pointer to the input matrix (size: rows x columns).
+ * @param rows Number of rows in the matrix (must be positive).
+ * @param columns Number of columns in the matrix (must be positive).
+ *
+ * @return Pointer to the LU structure containing L, U, and A matrices on success,
+ *         or NULL on failure due to invalid dimensions or memory allocation errors.
+ */
+
 LU *create_LU(double *A, int rows, int columns) {
 
     if (rows <= 0 || columns <= 0) {
@@ -41,6 +55,20 @@ LU *create_LU(double *A, int rows, int columns) {
     return LU_decomposition;
 
 }
+
+/**
+ * @brief Performs LU decomposition on a given matrix using Doolittle's algorithm.
+ *
+ * This function decomposes a matrix A into a lower triangular matrix L
+ * and an upper triangular matrix U such that A = L * U.
+ *
+ * @param A Pointer to the input matrix (size: rows x columns).
+ * @param rows Number of rows in the matrix (must be positive).
+ * @param columns Number of columns in the matrix (must be positive).
+ *
+ * @return Pointer to the LU structure containing L and U matrices on success,
+ *         or NULL on failure due to invalid dimensions or memory allocation errors.
+ */
 
 LU *LU_decomposition(double *A, int rows, int columns) {
  
@@ -83,6 +111,21 @@ LU *LU_decomposition(double *A, int rows, int columns) {
     return LU_decomposition;
 
 }
+
+/**
+ * @brief Performs parallelized LU decomposition on a given matrix using OpenMP.
+ *
+ * This function decomposes a matrix A into a lower triangular matrix L
+ * and an upper triangular matrix U such that A = L * U. The computation is
+ * parallelized using OpenMP for improved performance on large matrices.
+ *
+ * @param A Pointer to the input matrix (size: rows x columns).
+ * @param rows Number of rows in the matrix (must be positive).
+ * @param columns Number of columns in the matrix (must be positive).
+ *
+ * @return Pointer to the LU structure containing L and U matrices on success,
+ *         or NULL on failure due to invalid dimensions or memory allocation errors.
+ */
 
 LU *LU_decomposition_parallel(double *A, int rows, int columns) {
 
@@ -131,6 +174,15 @@ LU *LU_decomposition_parallel(double *A, int rows, int columns) {
     return LU_decomposition;
     
 }
+
+/**
+ * @brief Frees all memory associated with an LU decomposition structure.
+ *
+ * This function releases the memory allocated for the matrices L, U, and A,
+ * as well as the LU structure itself.
+ *
+ * @param LU_decomposition Pointer to the LU structure to free.
+ */
 
 void LU_free(LU *LU_decomposition) {
 

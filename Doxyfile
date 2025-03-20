@@ -1,0 +1,27 @@
+PROJECT_NAME           = "Linear Algebra Basics"
+OUTPUT_DIRECTORY       = docs
+INPUT                  = functions/ functions/LU_decomposition.c
+RECURSIVE              = YES
+
+GENERATE_HTML          = YES
+GENERATE_LATEX         = NO
+
+EXTRACT_ALL            = YES
+
+HAVE_DOT               = YES
+DOT_PATH               = /usr/bin/dot
+
+QUIET                  = NO
+WARNINGS               = YES
+
+FILE_PATTERNS          = *.c *.h
+
+SOURCE_BROWSER         = YES
+INLINE_SOURCES         = YES
+
+GENERATE_TESTLIST      = YES
+
+GENERATE_TREEVIEW      = YES
+
+HTML_OUTPUT            = html/
+

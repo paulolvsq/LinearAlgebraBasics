@@ -1,5 +1,21 @@
 #include "LinearAlgebraBasics.h"
 
+/**
+ * @brief Computes the product of a matrix A and a vector X in parallel using OpenMP.
+ *
+ * This function calculates the vector result = A * X, where A is a matrix
+ * and X is a vector. The computation is parallelized using OpenMP to improve performance.
+ *
+ * @param A Pointer to the input matrix (size: A_rows x A_columns).
+ * @param A_rows Number of rows in the matrix A (must be positive).
+ * @param A_columns Number of columns in the matrix A (must equal dimension).
+ * @param X Pointer to the input vector (size: dimension).
+ * @param dimension Dimension of the vector X (must equal A_columns).
+ *
+ * @return Pointer to the resulting vector (size: A_rows) on success,
+ *         or NULL on failure due to invalid dimensions, null pointers, or memory allocation errors.
+ */
+
 double *parallel_vector_matrix_product(double *A, int A_rows, int A_columns, double *X, int dimension) {
 
     if (A_rows <= 0 || A_columns <= 0 || dimension <= 0) {

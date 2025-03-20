@@ -1,5 +1,23 @@
 #include "LinearAlgebraBasics.h"
 
+/**
+ * @brief Computes the product of two matrices P and Q sequentially.
+ *
+ * This function calculates the matrix product C = P * Q, where P is of size
+ * P_rows x P_columns and Q is of size Q_rows x Q_columns. The computation is
+ * performed sequentially without parallelization.
+ *
+ * @param P Pointer to the first input matrix (size: P_rows x P_columns).
+ * @param P_rows Number of rows in matrix P (must be positive).
+ * @param P_columns Number of columns in matrix P (must equal Q_rows).
+ * @param Q Pointer to the second input matrix (size: Q_rows x Q_columns).
+ * @param Q_rows Number of rows in matrix Q (must equal P_columns).
+ * @param Q_columns Number of columns in matrix Q (must be positive).
+ *
+ * @return Pointer to the resulting matrix (size: P_rows x Q_columns) on success,
+ *         or NULL on failure due to invalid dimensions, null pointers, or memory allocation errors.
+ */
+
 double *sequential_matrix_product(double *P, int P_rows, int P_columns, double *Q, int Q_rows, int Q_columns) {
     
     if (P_rows <= 0 || P_columns <= 0 || Q_rows <= 0 || Q_columns <= 0) {

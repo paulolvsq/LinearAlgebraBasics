@@ -1,6 +1,9 @@
 # LinearAlgebraBasics
 Basic functions for linear algebra applications
 
+## Documentation
+The documentation is generated in the docs directory
+
 ## How to build ? 
 - Clone the repo
 - Make

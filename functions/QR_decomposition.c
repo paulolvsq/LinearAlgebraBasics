@@ -1,6 +1,20 @@
 #include "LinearAlgebraBasics.h"
 #include <string.h>
 
+/**
+ * @brief Allocates and initializes a QR decomposition structure.
+ *
+ * This function creates a QR decomposition structure for a given matrix A
+ * and initializes its components (Q, R, and A).
+ *
+ * @param A Pointer to the input matrix (size: rows x columns).
+ * @param rows Number of rows in the matrix (must be positive).
+ * @param columns Number of columns in the matrix (must be positive).
+ *
+ * @return Pointer to the QR structure containing Q, R, and A matrices on success,
+ *         or NULL on failure due to invalid dimensions or memory allocation errors.
+ */
+
 QR *create_QR(double *A, int rows, int columns) {
 
     if (rows <= 0 || columns <= 0) {
@@ -47,6 +61,20 @@ QR *create_QR(double *A, int rows, int columns) {
     return QR_decomposition;
 
 }
+
+/**
+ * @brief Performs QR decomposition on a given matrix using the Modified Gram-Schmidt method.
+ *
+ * This function decomposes a matrix A into an orthogonal matrix Q
+ * and an upper triangular matrix R such that A = Q * R.
+ *
+ * @param A Pointer to the input matrix (size: rows x columns).
+ * @param rows Number of rows in the matrix (must be positive).
+ * @param columns Number of columns in the matrix (must be positive).
+ *
+ * @return Pointer to the QR structure containing Q and R matrices on success,
+ *         or NULL on failure due to invalid dimensions, singular columns, or memory allocation errors.
+ */
 
 QR *QR_decomposition(double *A, int rows, int columns) {
     
@@ -99,6 +127,21 @@ QR *QR_decomposition(double *A, int rows, int columns) {
     return QR_decomposition;
     
 }
+
+/**
+ * @brief Performs parallelized QR decomposition on a given matrix using OpenMP.
+ *
+ * This function decomposes a matrix A into an orthogonal matrix Q
+ * and an upper triangular matrix R such that A = Q * R. The computation is
+ * parallelized using OpenMP for improved performance on large matrices.
+ *
+ * @param A Pointer to the input matrix (size: rows x columns).
+ * @param rows Number of rows in the matrix (must be positive).
+ * @param columns Number of columns in the matrix (must be positive).
+ *
+ * @return Pointer to the QR structure containing Q and R matrices on success,
+ *         or NULL on failure due to invalid dimensions, singular columns, or memory allocation errors.
+ */
 
 QR *QR_decomposition_parallel(double *A, int rows, int columns) {
     
@@ -158,6 +201,15 @@ QR *QR_decomposition_parallel(double *A, int rows, int columns) {
 
     return QR_decomposition;
 }
+
+/**
+ * @brief Frees all memory associated with a QR decomposition structure.
+ *
+ * This function releases the memory allocated for the matrices Q, R, and A,
+ * as well as the QR structure itself.
+ *
+ * @param QR_decomposition Pointer to the QR structure to free.
+ */
 
 void QR_free(QR *QR_decomposition) {
 

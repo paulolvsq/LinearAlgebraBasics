@@ -1,6 +1,21 @@
 #include "LinearAlgebraBasics.h"
 
-// ASSERTION : THE USER WILL ALWAYS GIVE MATRICES OF THE RIGHT SIZE AS INPUT 
+// ASSERTION : THE USER WILL ALWAYS GIVE MATRICES OF THE RIGHT SIZE AS INPUT
+
+/**
+ * @brief Adds two matrices A and B of the same size (rows x columns).
+ *
+ * This function computes the element-wise sum of two matrices A and B
+ * and stores the result in a new matrix.
+ *
+ * @param A Pointer to the first input matrix (size: rows x columns).
+ * @param B Pointer to the second input matrix (size: rows x columns).
+ * @param rows Number of rows in the matrices (must be positive).
+ * @param columns Number of columns in the matrices (must be positive).
+ *
+ * @return Pointer to the resulting matrix on success, or NULL on failure due to invalid dimensions,
+ *         null pointers, or memory allocation errors.
+ */
 
 double *matrices_addition(double *A, double *B, int rows, int columns) {
 
@@ -29,6 +44,21 @@ double *matrices_addition(double *A, double *B, int rows, int columns) {
 
 }
 
+/**
+ * @brief Multiplies a matrix A by a scalar value.
+ *
+ * This function multiplies each element of a matrix A by a given scalar value
+ * and stores the result in a new matrix.
+ *
+ * @param A Pointer to the input matrix (size: rows x columns).
+ * @param rows Number of rows in the matrix (must be positive).
+ * @param columns Number of columns in the matrix (must be positive).
+ * @param scalar Scalar value to multiply each element by.
+ *
+ * @return Pointer to the resulting matrix on success, or NULL on failure due to invalid dimensions,
+ *         null pointers, or memory allocation errors.
+ */
+
 double *matrix_scalar_multiplication(double *A, int rows, int columns, int scalar) {
 
     if (rows <= 0 || columns <= 0) {
@@ -55,6 +85,19 @@ double *matrix_scalar_multiplication(double *A, int rows, int columns, int scala
     return matrix;
 	       
 }
+
+/**
+ * @brief Computes the transpose of a given matrix A.
+ *
+ * This function creates a new matrix that is the transpose of the input matrix A.
+ *
+ * @param A Pointer to the input matrix (size: rows x columns).
+ * @param rows Number of rows in the input matrix (must be positive).
+ * @param columns Number of columns in the input matrix (must be positive).
+ *
+ * @return Pointer to the transposed matrix on success, or NULL on failure due to invalid dimensions,
+ *         null pointers, or memory allocation errors.
+ */
 
 double *matrix_transpose(double *A, int rows, int columns) {
 
@@ -83,6 +126,18 @@ double *matrix_transpose(double *A, int rows, int columns) {
 
 }
 
+/**
+ * @brief Computes the trace of a square matrix A.
+ *
+ * The trace is defined as the sum of the diagonal elements of a square matrix.
+ *
+ * @param A Pointer to the input square matrix (size: dimension x dimension).
+ * @param dimension Dimension of the square matrix (must be positive).
+ *
+ * @return The trace of the matrix on success, or -1.0 on failure due to invalid dimensions
+ *         or null pointers.
+ */
+
 double matrix_trace(double *A, int dimension) {
 
     if (dimension <= 0) {
@@ -103,6 +158,19 @@ double matrix_trace(double *A, int dimension) {
     return trace;
     
 }
+
+/**
+ * @brief Computes the 1-norm of a given matrix A.
+ *
+ * The 1-norm is defined as the maximum absolute column sum of a matrix.
+ *
+ * @param A Pointer to the input matrix (size: rows x columns).
+ * @param rows Number of rows in the input matrix (must be positive).
+ * @param columns Number of columns in the input matrix (must be positive).
+ *
+ * @return The 1-norm of the matrix on success, or -1.0 on failure due to invalid dimensions,
+ *         null pointers, or memory allocation errors during transposition.
+ */
 
 double matrix_norm(double *A, int rows, int columns) {
 
@@ -142,6 +210,20 @@ double matrix_norm(double *A, int rows, int columns) {
     
 }
 
+/**
+ * @brief Computes the Frobenius norm of a given matrix A.
+ *
+ * The Frobenius norm is defined as the square root of the sum of squares
+ * of all elements in a matrix.
+ *
+ * @param A Pointer to the input matrix (size: rows x columns).
+ * @param rows Number of rows in the input matrix (must be positive).
+ * @param columns Number of columns in the input matrix (must be positive).
+ *
+ * @return The Frobenius norm of the matrix on success, or -1.0 on failure due to invalid dimensions
+ *         or null pointers.
+ */
+
 double frobenius_norm(double *A, int rows, int columns) {
 
     if (rows <= 0 || columns <= 0) {
@@ -163,6 +245,20 @@ double frobenius_norm(double *A, int rows, int columns) {
     return sqrt(frobenius);
     
 }
+
+/**
+ * @brief Computes the determinant of a square matrix A using LU decomposition.
+ *
+ * This function calculates the determinant by performing LU decomposition
+ * and multiplying diagonal elements from L and U matrices. It checks for singularity during computation.
+ *
+ * @param A Pointer to the input square matrix (size: rows x rows).
+ * @param rows Number of rows in the square matrix (must equal columns and be positive).
+ * @param columns Number of columns in the square matrix (must equal rows and be positive).
+ *
+ * @return The determinant of the matrix on success, or -1.0 on failure due to invalid dimensions,
+ *         null pointers, singularity detection, or LU decomposition failure.
+ */
 
 double matrix_determinant(double *A, int rows, int columns) {
 
@@ -205,6 +301,20 @@ double matrix_determinant(double *A, int rows, int columns) {
 
 }
 
+/**
+ * @brief Checks if a square matrix H has converged based on a given tolerance.
+ *
+ * This function verifies whether all elements below the main diagonal are smaller than
+ * a specified tolerance value. It assumes H is a square matrix.
+ *
+ * @param H Pointer to the square matrix (size: n x n).
+ * @param n Dimension of the square matrix (must be positive).
+ * @param tol Tolerance for convergence check (must be positive).
+ *
+ * @return 1 if converged, 0 if not converged, or -1 on failure due to invalid dimensions,
+ *         null pointers, or invalid tolerance values.
+ */
+
 int has_converged(double *H, int n, double tol) {
 
     if (n <= 0) {
@@ -235,6 +345,23 @@ int has_converged(double *H, int n, double tol) {
     return 1;
 		 
 }
+
+/**
+ * @brief Computes eigenvalues of a square matrix using QR decomposition with iterative refinement.
+ *
+ * This function uses QR decomposition iteratively until convergence is achieved within
+ * a specified tolerance or until reaching a maximum number of iterations. Eigenvalues are extracted from
+ * diagonal elements after convergence.
+ *
+ * @param A Pointer to the input square matrix (size: rows x columns).
+ * @param rows Number of rows in the input matrix (must be positive).
+ * @param columns Number of columns in the input matrix (must be positive).
+ * @param max_iter Maximum number of iterations for convergence.
+ * @param tol Tolerance for convergence check (must be positive).
+ *
+ * @return Pointer to an array containing eigenvalues on success, or NULL on failure due to invalid dimensions,
+           null pointers, memory allocation errors, or lack of convergence within max_iter iterations.
+ */
 
 double *matrix_eigenvalues(double *A, int rows, int columns, int max_iter, double tol) {
 
@@ -326,6 +453,19 @@ double *matrix_eigenvalues(double *A, int rows, int columns, int max_iter, doubl
     
 }
 
+/**
+ * @brief Solves a lower triangular system Lc = b using forward substitution.
+ *
+ * This function computes the solution vector c such that Lc = b for a lower triangular matrix L.
+ *
+ * @param L Pointer to the lower triangular matrix (size: d x d).
+ * @param d Dimension of the square matrix L and vector b (must be positive).
+ * @param b Pointer to the right-hand side vector b (size: d).
+ *
+ * @return Pointer to the solution vector c on success, or NULL on failure due to invalid dimensions,
+ *         null pointers, singular matrix detection, or memory allocation errors.
+ */
+
 double *forward_substitution(double *L, int d, double *b) {
 
     if (d <= 0) {
@@ -367,6 +507,19 @@ double *forward_substitution(double *L, int d, double *b) {
 
 }
 
+/**
+ * @brief Solves an upper triangular system Ux = c using backward substitution.
+ *
+ * This function computes the solution vector x such that Ux = c for an upper triangular matrix U.
+ *
+ * @param U Pointer to the upper triangular matrix (size: d x d).
+ * @param d Dimension of the square matrix U and vector c (must be positive).
+ * @param c Pointer to the right-hand side vector c (size: d).
+ *
+ * @return Pointer to the solution vector x on success, or NULL on failure due to invalid dimensions,
+ *         null pointers, singular matrix detection, or memory allocation errors.
+ */
+
 double *backward_substitution(double *U, int d, double *c) {
 
     if (d <= 0) {
@@ -405,6 +558,20 @@ double *backward_substitution(double *U, int d, double *c) {
     return x;
     
 }
+
+/**
+ * @brief Solves a linear system Ax = b using LU decomposition.
+ *
+ * This function computes the solution vector x for a square matrix A and right-hand side vector b
+ * by performing LU decomposition and solving Ly = b followed by Ux = y.
+ *
+ * @param A Pointer to the square matrix A (size: d x d).
+ * @param b Pointer to the right-hand side vector b (size: d).
+ * @param d Dimension of the square matrix A and vector b (must be positive).
+ *
+ * @return Pointer to the solution vector x on success, or NULL on failure due to invalid dimensions,
+ *         null pointers, LU decomposition failure, or memory allocation errors.
+ */
 
 double *solve_LU_system(double *A, double *b, int d) {
 
@@ -451,6 +618,19 @@ double *solve_LU_system(double *A, double *b, int d) {
     return x;
     
 }
+
+/**
+ * @brief Computes the inverse of a square matrix A using LU decomposition.
+ *
+ * This function calculates the inverse of a square matrix A by solving multiple systems
+ * Ax_i = e_i, where e_i are columns of the identity matrix. The result is stored in a new matrix.
+ *
+ * @param A Pointer to the square matrix A (size: d x d).
+ * @param d Dimension of the square matrix A (must be positive).
+ *
+ * @return Pointer to the inverse matrix on success, or NULL on failure due to invalid dimensions,
+ *         null pointers, LU decomposition failure, or memory allocation errors.
+ */
 
 double *matrix_inverse(double *A, int d) {
 
