@@ -3,7 +3,7 @@ Basic functions for linear algebra applications
 
 ## Documentation
 - The documentation is generated in the docs directory
-- You can open with your navigator the docs/html/_linear_algebra_basics_8h_source.html file
+- You can open with your navigator the docs/html/index.html file
 - Go to : Linear Algebra Basics / Files / functions 
 
 ## How to build ? 
