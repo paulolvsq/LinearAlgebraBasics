@@ -1,7 +1,7 @@
 #include "LinearAlgebraBasics.h"
 
 int main() {
-
+    
     printf("##################################### TEST LU DECOMPOSITION 1 #####################################\n");
     
     int rows = 3, columns = 3;

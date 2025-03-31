@@ -1,6 +1,6 @@
 PROJECT_NAME           = "Linear Algebra Basics"
 OUTPUT_DIRECTORY       = docs
-INPUT                  = functions/ functions/LU_decomposition.c
+INPUT                  = functions/
 RECURSIVE              = YES
 
 GENERATE_HTML          = YES
