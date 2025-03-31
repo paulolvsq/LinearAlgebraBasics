@@ -69,9 +69,21 @@ typedef struct QR {
 
 } QR;
 
+typedef struct Cholesky {
 
+    int size;
+
+    double *A;
+    double *L;
+    double *L_t;
+
+} Cholesky;
+
+/* Cholesky_decomposition.c */
+
+Cholesky *create_Cholesky(double *A, int size);
+    
 /* generate_matrix.c */
-
 
 /**
  * @brief Generates a matrix with random double values between 0 and DOUBLE.
