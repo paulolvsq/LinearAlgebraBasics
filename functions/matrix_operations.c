@@ -1,4 +1,5 @@
 #include "LinearAlgebraBasics.h"
+#include <string.h>
 
 // ASSERTION : THE USER WILL ALWAYS GIVE MATRICES OF THE RIGHT SIZE AS INPUT
 
@@ -400,7 +401,7 @@ double *matrix_eigenvalues(double *A, int rows, int columns, int max_iter, doubl
 
     int iter = 0;
 
-    QR *QR_H;
+    QR *QR_H = NULL;
     
     while (iter < max_iter && !has_converged(H, rows, tol)) {
 
@@ -420,23 +421,24 @@ double *matrix_eigenvalues(double *A, int rows, int columns, int max_iter, doubl
                 }
             }
         }
+	
         iter++;
 
 	if (iter >= max_iter) {
-	    fprintf(stderr, "Maximum iteration reached without convergence\n");
+	    fprintf(stderr, "Maximum iteration reached without convergence.\n");
 	    free(H);
+	    QR_free(QR_H);
 	    return NULL;
 	}
 	
     }
 
     QR_free(QR_H);
-
     
     double *eigenvalues = malloc(size * sizeof(double));
 
     if (!eigenvalues) {
-	fprintf(stderr,"Allocation failed\n");
+	fprintf(stderr, "Allocation failed for eigenvalues.\n");
 	free(H);
 	return NULL;
     }
