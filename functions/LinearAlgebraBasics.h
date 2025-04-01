@@ -98,6 +98,30 @@ typedef struct Cholesky {
 
 } Cholesky;
 
+/**
+ * @brief Represents the LDLT decomposition of a symmetric square matrix.
+ *
+ * This structure stores the components of an LDLT decomposition, where:
+ * - A is the original square matrix,
+ * - L is the lower triangular matrix with unit diagonal entries,
+ * - D is the diagonal matrix containing the diagonal elements of the decomposition,
+ * - Lᵀ is the transpose of the lower triangular matrix.
+ *
+ * The decomposition satisfies \( A = L \cdot D \cdot L^T \).
+ *
+ * @struct LDLT
+ * @var LDLT::size
+ * Dimension of the square matrix A (size x size).
+ * @var LDLT::A
+ * Pointer to the original square matrix (size: size x size).
+ * @var LDLT::L
+ * Pointer to the lower triangular matrix resulting from the decomposition (size: size x size).
+ * @var LDLT::D
+ * Pointer to the diagonal matrix containing diagonal elements (size: size x size).
+ * @var LDLT::L_t
+ * Pointer to the transpose of the lower triangular matrix (size: size x size).
+ */
+
 typedef struct LDLT {
 
     int size;

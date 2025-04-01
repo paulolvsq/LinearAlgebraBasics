@@ -135,13 +135,13 @@ Include dependency graph for LDLT_decomposition.c:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a725b6b2a17ae379e310d0f00629a25da" id="r_a725b6b2a17ae379e310d0f00629a25da"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_l_d_l_t.html">LDLT</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a725b6b2a17ae379e310d0f00629a25da">create_LDLT</a> (double *A, int size)</td></tr>
-<tr class="memdesc:a725b6b2a17ae379e310d0f00629a25da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocates and initializes an <a class="el" href="struct_l_d_l_t.html">LDLT</a> decomposition structure.  <br /></td></tr>
+<tr class="memdesc:a725b6b2a17ae379e310d0f00629a25da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocates and initializes an <a class="el" href="struct_l_d_l_t.html" title="Represents the LDLT decomposition of a symmetric square matrix.">LDLT</a> decomposition structure.  <br /></td></tr>
 <tr class="separator:a725b6b2a17ae379e310d0f00629a25da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3622119e46c48977b2f6585298aef240" id="r_a3622119e46c48977b2f6585298aef240"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_l_d_l_t.html">LDLT</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3622119e46c48977b2f6585298aef240">LDLT_decomposition</a> (double *A, int size)</td></tr>
-<tr class="memdesc:a3622119e46c48977b2f6585298aef240"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs <a class="el" href="struct_l_d_l_t.html">LDLT</a> decomposition on a symmetric square matrix.  <br /></td></tr>
+<tr class="memdesc:a3622119e46c48977b2f6585298aef240"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs <a class="el" href="struct_l_d_l_t.html" title="Represents the LDLT decomposition of a symmetric square matrix.">LDLT</a> decomposition on a symmetric square matrix.  <br /></td></tr>
 <tr class="separator:a3622119e46c48977b2f6585298aef240"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afa4ebadc45c0bec7766adad95df0080e" id="r_afa4ebadc45c0bec7766adad95df0080e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afa4ebadc45c0bec7766adad95df0080e">free_LDLT</a> (<a class="el" href="struct_l_d_l_t.html">LDLT</a> *<a class="el" href="#a3622119e46c48977b2f6585298aef240">LDLT_decomposition</a>)</td></tr>
-<tr class="memdesc:afa4ebadc45c0bec7766adad95df0080e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees all memory associated with an <a class="el" href="struct_l_d_l_t.html">LDLT</a> decomposition structure.  <br /></td></tr>
+<tr class="memdesc:afa4ebadc45c0bec7766adad95df0080e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees all memory associated with an <a class="el" href="struct_l_d_l_t.html" title="Represents the LDLT decomposition of a symmetric square matrix.">LDLT</a> decomposition structure.  <br /></td></tr>
 <tr class="separator:afa4ebadc45c0bec7766adad95df0080e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -164,8 +164,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Allocates and initializes an <a class="el" href="struct_l_d_l_t.html">LDLT</a> decomposition structure. </p>
-<p>This function creates an <a class="el" href="struct_l_d_l_t.html">LDLT</a> decomposition structure for a given matrix A and initializes its components (A, L, D, and Lᵀ). The input matrix A is copied into the structure, and the matrices L, D, and Lᵀ are initialized to zero.</p>
+<p>Allocates and initializes an <a class="el" href="struct_l_d_l_t.html" title="Represents the LDLT decomposition of a symmetric square matrix.">LDLT</a> decomposition structure. </p>
+<p>This function creates an <a class="el" href="struct_l_d_l_t.html" title="Represents the LDLT decomposition of a symmetric square matrix.">LDLT</a> decomposition structure for a given matrix A and initializes its components (A, L, D, and Lᵀ). The input matrix A is copied into the structure, and the matrices L, D, and Lᵀ are initialized to zero.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">A</td><td>Pointer to the input square matrix (size: size x size). </td></tr>
@@ -173,7 +173,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Pointer to the <a class="el" href="struct_l_d_l_t.html">LDLT</a> structure on success, or NULL on failure due to invalid dimensions or memory allocation errors. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the <a class="el" href="struct_l_d_l_t.html" title="Represents the LDLT decomposition of a symmetric square matrix.">LDLT</a> structure on success, or NULL on failure due to invalid dimensions or memory allocation errors. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="_l_d_l_t__decomposition_8c_source.html#l00018">18</a> of file <a class="el" href="_l_d_l_t__decomposition_8c_source.html">LDLT_decomposition.c</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   18</span>                                       {</div>
@@ -205,7 +205,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">   44</span>}</div>
 <div class="ttc" id="a_l_d_l_t__decomposition_8c_html_a3622119e46c48977b2f6585298aef240"><div class="ttname"><a href="#a3622119e46c48977b2f6585298aef240">LDLT_decomposition</a></div><div class="ttdeci">LDLT * LDLT_decomposition(double *A, int size)</div><div class="ttdoc">Performs LDLT decomposition on a symmetric square matrix.</div><div class="ttdef"><b>Definition</b> <a href="_l_d_l_t__decomposition_8c_source.html#l00066">LDLT_decomposition.c:66</a></div></div>
 <div class="ttc" id="a_l_d_l_t__decomposition_8c_html_afa4ebadc45c0bec7766adad95df0080e"><div class="ttname"><a href="#afa4ebadc45c0bec7766adad95df0080e">free_LDLT</a></div><div class="ttdeci">void free_LDLT(LDLT *LDLT_decomposition)</div><div class="ttdoc">Frees all memory associated with an LDLT decomposition structure.</div><div class="ttdef"><b>Definition</b> <a href="_l_d_l_t__decomposition_8c_source.html#l00139">LDLT_decomposition.c:139</a></div></div>
-<div class="ttc" id="astruct_l_d_l_t_html"><div class="ttname"><a href="struct_l_d_l_t.html">LDLT</a></div><div class="ttdef"><b>Definition</b> <a href="_linear_algebra_basics_8h_source.html#l00101">LinearAlgebraBasics.h:101</a></div></div>
+<div class="ttc" id="astruct_l_d_l_t_html"><div class="ttname"><a href="struct_l_d_l_t.html">LDLT</a></div><div class="ttdoc">Represents the LDLT decomposition of a symmetric square matrix.</div><div class="ttdef"><b>Definition</b> <a href="_linear_algebra_basics_8h_source.html#l00125">LinearAlgebraBasics.h:125</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -224,11 +224,11 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Frees all memory associated with an <a class="el" href="struct_l_d_l_t.html">LDLT</a> decomposition structure. </p>
-<p>This function releases the memory allocated for the matrices A, L, D, and Lᵀ, as well as the <a class="el" href="struct_l_d_l_t.html">LDLT</a> structure itself.</p>
+<p>Frees all memory associated with an <a class="el" href="struct_l_d_l_t.html" title="Represents the LDLT decomposition of a symmetric square matrix.">LDLT</a> decomposition structure. </p>
+<p>This function releases the memory allocated for the matrices A, L, D, and Lᵀ, as well as the <a class="el" href="struct_l_d_l_t.html" title="Represents the LDLT decomposition of a symmetric square matrix.">LDLT</a> structure itself.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">LDLT_decomposition</td><td>Pointer to the <a class="el" href="struct_l_d_l_t.html">LDLT</a> structure to free. </td></tr>
+    <tr><td class="paramname">LDLT_decomposition</td><td>Pointer to the <a class="el" href="struct_l_d_l_t.html" title="Represents the LDLT decomposition of a symmetric square matrix.">LDLT</a> structure to free. </td></tr>
   </table>
   </dd>
 </dl>
@@ -268,7 +268,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Performs <a class="el" href="struct_l_d_l_t.html">LDLT</a> decomposition on a symmetric square matrix. </p>
+<p>Performs <a class="el" href="struct_l_d_l_t.html" title="Represents the LDLT decomposition of a symmetric square matrix.">LDLT</a> decomposition on a symmetric square matrix. </p>
 <p>This function decomposes a symmetric square matrix A into:</p><ul>
 <li>L: a lower triangular matrix with unit diagonal,</li>
 <li>D: a diagonal matrix,</li>
@@ -283,7 +283,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Pointer to the <a class="el" href="struct_l_d_l_t.html">LDLT</a> structure containing matrices A, L, D, and Lᵀ on success, or NULL on failure due to invalid dimensions, non-symmetric matrix, singularity detection, or memory allocation errors. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the <a class="el" href="struct_l_d_l_t.html" title="Represents the LDLT decomposition of a symmetric square matrix.">LDLT</a> structure containing matrices A, L, D, and Lᵀ on success, or NULL on failure due to invalid dimensions, non-symmetric matrix, singularity detection, or memory allocation errors. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="_l_d_l_t__decomposition_8c_source.html#l00066">66</a> of file <a class="el" href="_l_d_l_t__decomposition_8c_source.html">LDLT_decomposition.c</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   66</span>                                              {</div>
@@ -350,10 +350,10 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">  127</span>    </div>
 <div class="line"><span class="lineno">  128</span>}</div>
 <div class="ttc" id="a_l_d_l_t__decomposition_8c_html_a725b6b2a17ae379e310d0f00629a25da"><div class="ttname"><a href="#a725b6b2a17ae379e310d0f00629a25da">create_LDLT</a></div><div class="ttdeci">LDLT * create_LDLT(double *A, int size)</div><div class="ttdoc">Allocates and initializes an LDLT decomposition structure.</div><div class="ttdef"><b>Definition</b> <a href="_l_d_l_t__decomposition_8c_source.html#l00018">LDLT_decomposition.c:18</a></div></div>
-<div class="ttc" id="astruct_l_d_l_t_html_a0ed688c6562ea5adadcb43b9f03a6eae"><div class="ttname"><a href="struct_l_d_l_t.html#a0ed688c6562ea5adadcb43b9f03a6eae">LDLT::L</a></div><div class="ttdeci">double * L</div><div class="ttdef"><b>Definition</b> <a href="_linear_algebra_basics_8h_source.html#l00106">LinearAlgebraBasics.h:106</a></div></div>
-<div class="ttc" id="astruct_l_d_l_t_html_a32c52aa87ce494c055d7757ed0a0334d"><div class="ttname"><a href="struct_l_d_l_t.html#a32c52aa87ce494c055d7757ed0a0334d">LDLT::A</a></div><div class="ttdeci">double * A</div><div class="ttdef"><b>Definition</b> <a href="_linear_algebra_basics_8h_source.html#l00105">LinearAlgebraBasics.h:105</a></div></div>
-<div class="ttc" id="astruct_l_d_l_t_html_a53aa38236cdc15fdc8871e489b6a74ee"><div class="ttname"><a href="struct_l_d_l_t.html#a53aa38236cdc15fdc8871e489b6a74ee">LDLT::D</a></div><div class="ttdeci">double * D</div><div class="ttdef"><b>Definition</b> <a href="_linear_algebra_basics_8h_source.html#l00107">LinearAlgebraBasics.h:107</a></div></div>
-<div class="ttc" id="astruct_l_d_l_t_html_a568193135fdc089c3513e8623b7b78a4"><div class="ttname"><a href="struct_l_d_l_t.html#a568193135fdc089c3513e8623b7b78a4">LDLT::L_t</a></div><div class="ttdeci">double * L_t</div><div class="ttdef"><b>Definition</b> <a href="_linear_algebra_basics_8h_source.html#l00108">LinearAlgebraBasics.h:108</a></div></div>
+<div class="ttc" id="astruct_l_d_l_t_html_a0ed688c6562ea5adadcb43b9f03a6eae"><div class="ttname"><a href="struct_l_d_l_t.html#a0ed688c6562ea5adadcb43b9f03a6eae">LDLT::L</a></div><div class="ttdeci">double * L</div><div class="ttdef"><b>Definition</b> <a href="_linear_algebra_basics_8h_source.html#l00130">LinearAlgebraBasics.h:130</a></div></div>
+<div class="ttc" id="astruct_l_d_l_t_html_a32c52aa87ce494c055d7757ed0a0334d"><div class="ttname"><a href="struct_l_d_l_t.html#a32c52aa87ce494c055d7757ed0a0334d">LDLT::A</a></div><div class="ttdeci">double * A</div><div class="ttdef"><b>Definition</b> <a href="_linear_algebra_basics_8h_source.html#l00129">LinearAlgebraBasics.h:129</a></div></div>
+<div class="ttc" id="astruct_l_d_l_t_html_a53aa38236cdc15fdc8871e489b6a74ee"><div class="ttname"><a href="struct_l_d_l_t.html#a53aa38236cdc15fdc8871e489b6a74ee">LDLT::D</a></div><div class="ttdeci">double * D</div><div class="ttdef"><b>Definition</b> <a href="_linear_algebra_basics_8h_source.html#l00131">LinearAlgebraBasics.h:131</a></div></div>
+<div class="ttc" id="astruct_l_d_l_t_html_a568193135fdc089c3513e8623b7b78a4"><div class="ttname"><a href="struct_l_d_l_t.html#a568193135fdc089c3513e8623b7b78a4">LDLT::L_t</a></div><div class="ttdeci">double * L_t</div><div class="ttdef"><b>Definition</b> <a href="_linear_algebra_basics_8h_source.html#l00132">LinearAlgebraBasics.h:132</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
