@@ -415,14 +415,18 @@ double *matrix_eigenvalues(double *A, int rows, int columns, int max_iter, doubl
 
 	for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
-                H[i * columns + j] = 0.0;
+		double sum = 0.0;
                 for (int k = 0; k < columns; k++) {
-                    H[i * columns + j] += QR_H->R[i * columns + k] * QR_H->Q[k * columns + j];
+                    sum += QR_H->R[i * columns + k] * QR_H->Q[k * columns + j];
                 }
+		H[i * columns + j] = sum;
             }
         }
 	
         iter++;
+
+	QR_free(QR_H);
+	QR_H = NULL;
 
 	if (iter >= max_iter) {
 	    fprintf(stderr, "Maximum iteration reached without convergence.\n");
