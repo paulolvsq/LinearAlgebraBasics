@@ -69,6 +69,25 @@ typedef struct QR {
 
 } QR;
 
+/**
+ * @brief Represents the Cholesky decomposition of a matrix.
+ *
+ * This structure stores the components of a Cholesky decomposition, where:
+ * - A is the original square matrix,
+ * - L is the lower triangular matrix resulting from the decomposition,
+ * - Lᵀ is the transpose of the lower triangular matrix.
+ *
+ * @struct Cholesky
+ * @var Cholesky::size
+ * Dimension of the square matrix A (size x size).
+ * @var Cholesky::A
+ * Pointer to the original square matrix (size: size x size).
+ * @var Cholesky::L
+ * Pointer to the lower triangular matrix resulting from the decomposition (size: size x size).
+ * @var Cholesky::L_t
+ * Pointer to the transpose of the lower triangular matrix (size: size x size).
+ */
+
 typedef struct Cholesky {
 
     int size;
@@ -81,7 +100,50 @@ typedef struct Cholesky {
 
 /* Cholesky_decomposition.c */
 
+/**
+ * @brief Allocates and initializes a Cholesky decomposition structure.
+ *
+ * This function creates a Cholesky decomposition structure for a given matrix A
+ * and initializes its components (A, L, and Lᵀ). The input matrix A is copied into
+ * the structure, and the matrices L and Lᵀ are initialized to zero.
+ *
+ * @param A Pointer to the input square matrix (size: size x size).
+ * @param size Dimension of the square matrix A (must be positive).
+ *
+ * @return Pointer to the Cholesky structure on success, or NULL on failure due to
+ *         invalid dimensions or memory allocation errors.
+ */
+
 Cholesky *create_Cholesky(double *A, int size);
+
+/**
+ * @brief Performs Cholesky decomposition on a symmetric positive-definite matrix.
+ *
+ * This function decomposes a symmetric positive-definite matrix A into a lower triangular matrix L
+ * such that \( A = L \cdot L^T \). The resulting matrices L and Lᵀ are stored in the Cholesky structure.
+ *
+ * The function checks if the input matrix is symmetric and positive definite before performing the decomposition.
+ *
+ * @param A Pointer to the input square matrix (size: size x size).
+ * @param size Dimension of the square matrix A (must be positive).
+ *
+ * @return Pointer to the Cholesky structure containing matrices A, L, and Lᵀ on success,
+ *         or NULL on failure due to invalid dimensions, non-symmetric matrix, non-positive definite matrix,
+ *         or memory allocation errors.
+ */
+
+Cholesky *Cholesky_decomposition(double *A, int size);
+
+/**
+ * @brief Frees all memory associated with a Cholesky decomposition structure.
+ *
+ * This function releases the memory allocated for the matrices A, L, and Lᵀ,
+ * as well as the Cholesky structure itself.
+ *
+ * @param Cholesky_decomposition Pointer to the Cholesky structure to free.
+ */
+
+void free_Cholesky(Cholesky *Cholesky_decomposition);
     
 /* generate_matrix.c */
 

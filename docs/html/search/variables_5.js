@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['u_0',['U',['../struct_l_u.html#ac8d2009f85e2aee2a595864bc5a2bf82',1,'LU']]]
+  ['size_113',['size',['../structCholesky.html#a303579fc50b3a267b5f0b0afb3a88267',1,'Cholesky']]]
 ];

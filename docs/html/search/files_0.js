@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['generate_5fmatrix_2ec_0',['generate_matrix.c',['../generate__matrix_8c.html',1,'']]]
+  ['cholesky_5fdecomposition_2ec_61',['Cholesky_decomposition.c',['../Cholesky__decomposition_8c.html',1,'']]]
 ];

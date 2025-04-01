@@ -1,5 +1,6 @@
 var annotated_dup =
 [
-    [ "LU", "struct_l_u.html", "struct_l_u" ],
-    [ "QR", "struct_q_r.html", "struct_q_r" ]
+    [ "Cholesky", "structCholesky.html", "structCholesky" ],
+    [ "LU", "structLU.html", "structLU" ],
+    [ "QR", "structQR.html", "structQR" ]
 ];

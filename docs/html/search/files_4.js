@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['qr_5fdecomposition_2ec_0',['QR_decomposition.c',['../_q_r__decomposition_8c.html',1,'']]]
+  ['parallel_5fmatrix_5fproduct_2ec_66',['parallel_matrix_product.c',['../parallel__matrix__product_8c.html',1,'']]],
+  ['parallel_5fvector_5fmatrix_5fproduct_2ec_67',['parallel_vector_matrix_product.c',['../parallel__vector__matrix__product_8c.html',1,'']]]
 ];

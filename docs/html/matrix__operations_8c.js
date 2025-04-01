@@ -1,16 +1,16 @@
 var matrix__operations_8c =
 [
-    [ "backward_substitution", "matrix__operations_8c.html#ae9a151d14ba2126ede532166086c1e3e", null ],
-    [ "forward_substitution", "matrix__operations_8c.html#ae84896641166c83b819eb9c4cf9000d6", null ],
+    [ "backward_substitution", "matrix__operations_8c.html#aad319f4c16ec0848dec0e41d4c1c44ed", null ],
+    [ "forward_substitution", "matrix__operations_8c.html#a2acd987a2b166c3c072e54f6c997a1a5", null ],
     [ "frobenius_norm", "matrix__operations_8c.html#ad61c10c1bd0c988b38e58a7e3b15d21d", null ],
     [ "has_converged", "matrix__operations_8c.html#aeceb9f5fa19848d656c57ea20af474da", null ],
-    [ "matrices_addition", "matrix__operations_8c.html#a20f69f060861a6011d31e8d0222bab85", null ],
+    [ "matrices_addition", "matrix__operations_8c.html#a97ca97552ef1af519aeea21b5b41202a", null ],
     [ "matrix_determinant", "matrix__operations_8c.html#a0c2ac7dd4bb64505df6e81cb8cfd0b8b", null ],
-    [ "matrix_eigenvalues", "matrix__operations_8c.html#a9e19bec82ef96c9822e633d00f04390c", null ],
-    [ "matrix_inverse", "matrix__operations_8c.html#af58754ea4dd0244686944ac88defac7f", null ],
+    [ "matrix_eigenvalues", "matrix__operations_8c.html#a3e2b9e525a86fba27743485d40debd22", null ],
+    [ "matrix_inverse", "matrix__operations_8c.html#a8f04d7b988c7daefa6771dd437bbd16b", null ],
     [ "matrix_norm", "matrix__operations_8c.html#ae79612b979605ceec60dee127c450fc9", null ],
-    [ "matrix_scalar_multiplication", "matrix__operations_8c.html#a070f48f4af8927e832635ff7175b6f48", null ],
+    [ "matrix_scalar_multiplication", "matrix__operations_8c.html#a1693eb3a7da418637249c115e6cab2ac", null ],
     [ "matrix_trace", "matrix__operations_8c.html#a1870a542d753a4e8fc5fa4a769e3a5bd", null ],
-    [ "matrix_transpose", "matrix__operations_8c.html#a6d20788b9a3764d23bc14360d66b669b", null ],
-    [ "solve_LU_system", "matrix__operations_8c.html#a1ffd72a697959b35a429a46ca13bc97f", null ]
+    [ "matrix_transpose", "matrix__operations_8c.html#ab0dbb8e94aba0fd0c34354a6d5528b63", null ],
+    [ "solve_LU_system", "matrix__operations_8c.html#af3c1c19fe8e426522727943199bda5f5", null ]
 ];
