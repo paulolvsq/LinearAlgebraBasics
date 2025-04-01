@@ -75,7 +75,10 @@ Cholesky *Cholesky_decomposition(double *A, int size) {
 
     Cholesky *Cholesky_decomp = create_Cholesky(A, size);
     
-    if (!Cholesky_decomp) return NULL;
+    if (!Cholesky_decomp) {
+	fprintf(stderr, "Memory allocation failed for Cholesky structure.\n");
+	return NULL;
+    }
 
     for (int i = 0; i < size; i++) {
         for (int j = 0; j <= i; j++) {
@@ -104,18 +107,12 @@ Cholesky *Cholesky_decomposition(double *A, int size) {
         }
     }
 
-    double *L_t = matrix_transpose(Cholesky_decomp->L, size, size);
-    
-    if (!L_t) {
-        fprintf(stderr, "Memory allocation failed for transpose of L.\n");
-        free_Cholesky(Cholesky_decomp);
-        return NULL;
+    for (int i = 0; i < size; i++) {
+	for (int j = 0; j < size; j++) {
+	    Cholesky_decomp->L_t[j * size + i] = Cholesky_decomp->L[i * size + j];
+	}
     }
-
-    memcpy(Cholesky_decomp->L_t, L_t, size * size * sizeof(double));
     
-    free(L_t);
-
     return Cholesky_decomp;
 }
 

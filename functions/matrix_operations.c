@@ -437,7 +437,7 @@ double *matrix_eigenvalues(double *A, int rows, int columns, int max_iter, doubl
 	
     }
 
-    QR_free(QR_H);
+    //QR_free(QR_H);
     
     double *eigenvalues = malloc(size * sizeof(double));
 

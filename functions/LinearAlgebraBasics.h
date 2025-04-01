@@ -98,6 +98,68 @@ typedef struct Cholesky {
 
 } Cholesky;
 
+typedef struct LDLT {
+
+    int size;
+
+    double *A;
+    double *L;
+    double *D;
+    double *L_t;
+
+} LDLT;
+
+/* LDLT_decomposition.c */
+
+/**
+ * @brief Allocates and initializes an LDLT decomposition structure.
+ *
+ * This function creates an LDLT decomposition structure for a given matrix A
+ * and initializes its components (A, L, D, and Lᵀ). The input matrix A is copied
+ * into the structure, and the matrices L, D, and Lᵀ are initialized to zero.
+ *
+ * @param A Pointer to the input square matrix (size: size x size).
+ * @param size Dimension of the square matrix A (must be positive).
+ *
+ * @return Pointer to the LDLT structure on success, or NULL on failure due to
+ *         invalid dimensions or memory allocation errors.
+ */
+
+LDLT *create_LDLT(double *A, int size);
+
+/**
+ * @brief Performs LDLT decomposition on a symmetric square matrix.
+ *
+ * This function decomposes a symmetric square matrix A into:
+ * - L: a lower triangular matrix with unit diagonal,
+ * - D: a diagonal matrix,
+ * - Lᵀ: the transpose of the lower triangular matrix.
+ *
+ * The decomposition satisfies \( A = L \cdot D \cdot L^T \).
+ *
+ * The function checks if the input matrix is symmetric before performing the decomposition.
+ *
+ * @param A Pointer to the input square matrix (size: size x size).
+ * @param size Dimension of the square matrix A (must be positive).
+ *
+ * @return Pointer to the LDLT structure containing matrices A, L, D, and Lᵀ on success,
+ *         or NULL on failure due to invalid dimensions, non-symmetric matrix,
+ *         singularity detection, or memory allocation errors.
+ */
+
+LDLT *LDLT_decomposition(double *A, int size);
+
+/**
+ * @brief Frees all memory associated with an LDLT decomposition structure.
+ *
+ * This function releases the memory allocated for the matrices A, L, D, and Lᵀ,
+ * as well as the LDLT structure itself.
+ *
+ * @param LDLT_decomposition Pointer to the LDLT structure to free.
+ */
+
+void free_LDLT(LDLT *LDLT_decomposition);
+
 /* Cholesky_decomposition.c */
 
 /**

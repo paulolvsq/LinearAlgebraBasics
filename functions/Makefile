@@ -10,12 +10,12 @@ ifeq ($(OS), Darwin)
     endif
     SDK_PATH := $(shell xcrun --show-sdk-path)
     CC = $(GCC)
-    CFLAGS = -Wall -Werror -isysroot $(SDK_PATH) -fopenmp -lm
+    CFLAGS = -Wall -Werror -g -isysroot $(SDK_PATH) -fopenmp -lm
     OMPFLAGS = -lgomp
 else
     # Configuration standard pour Linux
     CC = gcc
-    CFLAGS = -Wall -Werror -fopenmp -fPIC -lm
+    CFLAGS = -Wall -Werror -g -fopenmp -fPIC -lm
     OMPFLAGS = 
 endif
 
@@ -26,7 +26,7 @@ all : LinearAlgebraBasics.so LinearAlgebraBasics.h
 	cp $^ ../tests
 	cp $^ ../performances
 
-LinearAlgebraBasics.so : generate_matrix.o sequential_matrix_product.o sequential_vector_matrix_product.o vector_operations.o matrix_operations.o LU_decomposition.o QR_decomposition.o parallel_vector_matrix_product.o parallel_matrix_product.o Cholesky_decomposition.o
+LinearAlgebraBasics.so : generate_matrix.o sequential_matrix_product.o sequential_vector_matrix_product.o vector_operations.o matrix_operations.o LU_decomposition.o QR_decomposition.o parallel_vector_matrix_product.o parallel_matrix_product.o Cholesky_decomposition.o LDLT_decomposition.o
 	$(CC) $(CFLAGS) -shared $^ -o $@ $(MATH)
 
 generate_matrix.o : generate_matrix.c
@@ -57,6 +57,9 @@ QR_decomposition.o : QR_decomposition.c
 	$(CC) $(CFLAGS) $(OMPFLAGS) -c -o $@ $^ $(MATH)
 
 Cholesky_decomposition.o : Cholesky_decomposition.c
+	$(CC) $(CFLAGS) -c -o $@ $^ $(MATH)
+
+LDLT_decomposition.o : LDLT_decomposition.c
 	$(CC) $(CFLAGS) -c -o $@ $^ $(MATH)
 
 clean :

@@ -11,7 +11,7 @@ int main() {
 
     Cholesky *Cholesky_test = Cholesky_decomposition(A, size);
 
-    printf("############################# TEST CHOLESKY #############################");
+    printf("############################# TEST CHOLESKY #############################\n");
 
     printf("L = \n");
     
