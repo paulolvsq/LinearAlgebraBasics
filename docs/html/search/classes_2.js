@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['qr_60',['QR',['../structQR.html',1,'']]]
+  ['qr_0',['QR',['../struct_q_r.html',1,'']]]
 ];

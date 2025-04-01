@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['r_111',['R',['../structQR.html#a81b7a0616f06e2e27e70f4c52325db16',1,'QR']]],
-  ['rows_112',['rows',['../structLU.html#a2cbfb2ace7377a24961536133940bc6b',1,'LU::rows()'],['../structQR.html#acc184f3caa5696e07ecfb01fbfcf69f7',1,'QR::rows()']]]
+  ['q_0',['Q',['../struct_q_r.html#a6b126d73bb5992dbaff12077b743cef0',1,'QR']]]
 ];

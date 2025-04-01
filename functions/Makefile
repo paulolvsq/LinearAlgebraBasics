@@ -10,12 +10,12 @@ ifeq ($(OS), Darwin)
     endif
     SDK_PATH := $(shell xcrun --show-sdk-path)
     CC = $(GCC)
-    CFLAGS = -Wall -Werror -g -isysroot $(SDK_PATH) -fopenmp -lm
+    CFLAGS = -Wall -Werror -isysroot $(SDK_PATH) -fopenmp -lm
     OMPFLAGS = -lgomp
 else
     # Configuration standard pour Linux
     CC = gcc
-    CFLAGS = -Wall -Werror -g -fopenmp -fPIC -lm
+    CFLAGS = -Wall -Werror -fopenmp -fPIC -lm
     OMPFLAGS = 
 endif
 
