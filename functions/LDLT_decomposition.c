@@ -17,6 +17,16 @@
 
 LDLT *create_LDLT(double *A, int size) {
 
+    if (!A) {
+	fprintf(stderr, "Error: Null pointer detected for input matrix A in create_LDLT.\n");
+	return NULL;
+    }
+
+    if (size <= 0) {
+	fprintf(stderr, "Error: Invalid size (%d). Must be strictly positive.\n", size);
+	return NULL;
+    }
+
     LDLT *LDLT_decomposition = malloc(sizeof(LDLT));
 
     if (!LDLT_decomposition) {
@@ -64,6 +74,16 @@ LDLT *create_LDLT(double *A, int size) {
  */
 
 LDLT *LDLT_decomposition(double *A, int size) {
+
+    if (!A) {
+        fprintf(stderr, "Error: Null pointer detected for input matrix A in LDLT_decomposition.\n");
+        return NULL;
+    }
+
+    if (size <= 0) {
+        fprintf(stderr, "Error: Invalid size (%d). Must be strictly positive.\n", size);
+        return NULL;
+    }
 
     for (int i = 0; i < size; i++) {
 	for (int j = i + 1; j < size; j++) {

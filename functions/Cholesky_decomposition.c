@@ -16,6 +16,16 @@
  */
 
 Cholesky *create_Cholesky(double *A, int size) {
+
+    if (!A) {
+	fprintf(stderr, "Error: Null pointer detected for input matrix A in create_Cholesky.\n");
+	return NULL;
+    }
+    
+    if (size <= 0) {
+	fprintf(stderr, "Error: Invalid size (%d). Must be strictly positive.\n", size);
+	return NULL;
+    }
     
     Cholesky *Cholesky_decomposition = malloc(sizeof(Cholesky));
 
@@ -59,6 +69,16 @@ Cholesky *create_Cholesky(double *A, int size) {
  */
 
 Cholesky *Cholesky_decomposition(double *A, int size) {
+
+    if (!A) {
+	fprintf(stderr, "Error: Null input matrix in Cholesky_decomposition.\n");
+	return NULL;
+    }
+    
+    if (size <= 0) {
+	fprintf(stderr, "Error: Invalid size (%d) in Cholesky_decomposition.\n", size);
+	return NULL;
+    }
 
     for (int i = 0; i < size; i++) {
         for (int j = i + 1; j < size; j++) {
