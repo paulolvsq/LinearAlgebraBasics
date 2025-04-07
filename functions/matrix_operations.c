@@ -384,9 +384,11 @@ double *matrix_eigenvalues(double *A, int rows, int columns, int max_iter, doubl
         fprintf(stderr, "Error: Null pointer detected for input matrix in matrix_eigenvalues.\n");
         return NULL;
     }
-    
-    double min = rows < columns ? rows : columns;
-    int size = (int) (min);
+
+    if (rows != columns) {
+        fprintf(stderr, "Error: Matrix must be square for eigenvalue computation.\n");
+        return NULL;
+    }
     
     double *H = malloc(rows * columns * sizeof(double));
 
@@ -395,17 +397,13 @@ double *matrix_eigenvalues(double *A, int rows, int columns, int max_iter, doubl
         return NULL;
     }
     
-    for (int i = 0; i < rows * columns; i++) {
-	H[i] = A[i];
-    }
+    memcpy(H, A, rows * columns * sizeof(double));
 
     int iter = 0;
-
-    QR *QR_H = NULL;
     
     while (iter < max_iter && !has_converged(H, rows, tol)) {
 
-	QR_H = QR_decomposition(H, rows, columns);
+	QR *QR_H = QR_decomposition(H, rows, columns);
 
 	if (!QR_H) {
             fprintf(stderr, "Error: QR decomposition failed during eigenvalue computation.\n");
@@ -419,27 +417,23 @@ double *matrix_eigenvalues(double *A, int rows, int columns, int max_iter, doubl
                 for (int k = 0; k < columns; k++) {
                     sum += QR_H->R[i * columns + k] * QR_H->Q[k * columns + j];
                 }
-		H[i * columns + j] = sum;
+	        H[i * columns + j] = sum;
             }
         }
-	
-        iter++;
 
 	QR_free(QR_H);
-	QR_H = NULL;
+	
+	iter++;
 
 	if (iter >= max_iter) {
 	    fprintf(stderr, "Maximum iteration reached without convergence.\n");
 	    free(H);
-	    QR_free(QR_H);
 	    return NULL;
 	}
 	
     }
-
-    //QR_free(QR_H);
     
-    double *eigenvalues = malloc(size * sizeof(double));
+    double *eigenvalues = malloc(rows * sizeof(double));
 
     if (!eigenvalues) {
 	fprintf(stderr, "Allocation failed for eigenvalues.\n");
@@ -447,14 +441,14 @@ double *matrix_eigenvalues(double *A, int rows, int columns, int max_iter, doubl
 	return NULL;
     }
     
-    for (int i = 0; i < size; i++) {
-        eigenvalues[i] = H[i * size + i];
+    for (int i = 0; i < rows; i++) {
+        eigenvalues[i] = H[i * rows + i];
     }
     
     printf("Converged in %d iteration(s).\n", iter);
 
     free(H);
-        
+    
     return eigenvalues;
     
 }

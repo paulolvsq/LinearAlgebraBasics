@@ -45,7 +45,7 @@ QR *create_QR(double *A, int rows, int columns) {
 
     QR_decomposition->A = malloc(rows * columns * sizeof(double));
     QR_decomposition->Q = malloc(rows * columns * sizeof(double));
-    QR_decomposition->R = malloc(columns * columns * sizeof(double));
+    QR_decomposition->R = calloc(columns * columns, sizeof(double));
 
     if (!QR_decomposition->A || !QR_decomposition->Q || !QR_decomposition->R) {
         fprintf(stderr, "Error: Memory allocation failed for matrices in create_QR.\n");

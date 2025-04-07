@@ -1,7 +1,7 @@
 var vector__operations_8c =
 [
-    [ "scalar_product", "vector__operations_8c.html#a4f27de4bb570f0a8c6600d9e8a437dc7", null ],
+    [ "scalar_product", "vector__operations_8c.html#a4f5b4acd6d6f8378d557f6c4b5e5fb16", null ],
     [ "vector_norm", "vector__operations_8c.html#adcaeb6a1daa74680eb005e8f241b2895", null ],
-    [ "vector_product", "vector__operations_8c.html#adb297e4c3090b7f799045850fa55cd55", null ],
-    [ "vectors_addition", "vector__operations_8c.html#a2d0e981ea7a5e7f5b726ad6d99877b26", null ]
+    [ "vector_product", "vector__operations_8c.html#ad18eb5bbfbe25280c836afae104fe9c5", null ],
+    [ "vectors_addition", "vector__operations_8c.html#acfef9f8b3126c6136c815e123926a518", null ]
 ];

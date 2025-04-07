@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['ldlt_0',['LDLT',['../struct_l_d_l_t.html',1,'']]],
-  ['lu_1',['LU',['../struct_l_u.html',1,'']]]
+  ['ldlt_65',['LDLT',['../structLDLT.html',1,'']]],
+  ['lu_66',['LU',['../structLU.html',1,'']]]
 ];

@@ -1,13 +1,8 @@
 <map id="functions/parallel_matrix_product.c" name="functions/parallel_matrix_product.c">
-<area shape="rect" id="Node000001" title=" " alt="" coords="100,5,225,46"/>
-<area shape="rect" id="Node000002" href="$_linear_algebra_basics_8h.html" title=" " alt="" coords="86,94,238,120"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="165,46,165,78,160,78,160,46"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="5,168,66,193"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="142,123,71,162,69,157,139,118"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="89,168,152,193"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="158,121,138,156,133,153,153,119"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="176,168,234,193"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="171,119,192,153,188,156,167,121"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="258,168,320,193"/>
-<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="185,118,255,157,253,162,182,123"/>
+<area shape="rect" id="node1" title=" " alt="" coords="103,5,228,47"/>
+<area shape="rect" id="node2" href="$LinearAlgebraBasics_8h.html" title=" " alt="" coords="89,95,241,121"/>
+<area shape="rect" id="node3" title=" " alt="" coords="5,169,67,196"/>
+<area shape="rect" id="node4" title=" " alt="" coords="91,169,155,196"/>
+<area shape="rect" id="node5" title=" " alt="" coords="179,169,237,196"/>
+<area shape="rect" id="node6" title=" " alt="" coords="262,169,325,196"/>
 </map>

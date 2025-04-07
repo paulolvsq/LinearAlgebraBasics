@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['r_0',['R',['../struct_q_r.html#a799246360ab329021c325148e3f049cc',1,'QR']]],
-  ['rows_1',['rows',['../struct_l_u.html#af6128e9fb0fbbb732d4f6c7465a1b150',1,'LU::rows'],['../struct_q_r.html#ae216e9e9e3b93dcf9b28662cae7670e8',1,'QR::rows']]]
+  ['r_123',['R',['../structQR.html#a81b7a0616f06e2e27e70f4c52325db16',1,'QR']]],
+  ['rows_124',['rows',['../structLU.html#a2cbfb2ace7377a24961536133940bc6b',1,'LU::rows()'],['../structQR.html#acc184f3caa5696e07ecfb01fbfcf69f7',1,'QR::rows()']]]
 ];

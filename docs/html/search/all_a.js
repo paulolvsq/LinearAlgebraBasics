@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['q_0',['Q',['../struct_q_r.html#a6b126d73bb5992dbaff12077b743cef0',1,'QR']]],
-  ['qr_1',['QR',['../struct_q_r.html',1,'QR'],['../_linear_algebra_basics_8h.html#af7d5ddd30836f7afbb88d5887b96548e',1,'QR:&#160;LinearAlgebraBasics.h']]],
-  ['qr_5fdecomposition_2',['QR_decomposition',['../_linear_algebra_basics_8h.html#a6754f4559d8bec5abef16e288288af6b',1,'QR_decomposition(double *A, int rows, int columns):&#160;QR_decomposition.c'],['../_q_r__decomposition_8c.html#a6754f4559d8bec5abef16e288288af6b',1,'QR_decomposition(double *A, int rows, int columns):&#160;QR_decomposition.c']]],
-  ['qr_5fdecomposition_2ec_3',['QR_decomposition.c',['../_q_r__decomposition_8c.html',1,'']]],
-  ['qr_5fdecomposition_5fparallel_4',['QR_decomposition_parallel',['../_linear_algebra_basics_8h.html#aa92f22e6f2eccdd68c7cee48c192002b',1,'QR_decomposition_parallel(double *A, int rows, int columns):&#160;QR_decomposition.c'],['../_q_r__decomposition_8c.html#aa92f22e6f2eccdd68c7cee48c192002b',1,'QR_decomposition_parallel(double *A, int rows, int columns):&#160;QR_decomposition.c']]],
-  ['qr_5ffree_5',['QR_free',['../_linear_algebra_basics_8h.html#ae266b1eaa592ab695cd19e7ef485ec46',1,'QR_free(QR *QR_decomposition):&#160;QR_decomposition.c'],['../_q_r__decomposition_8c.html#ae266b1eaa592ab695cd19e7ef485ec46',1,'QR_free(QR *QR_decomposition):&#160;QR_decomposition.c']]]
+  ['q_44',['Q',['../structQR.html#a1f27383addd27d459618d0a0ba1e9da9',1,'QR']]],
+  ['qr_45',['QR',['../structQR.html',1,'QR'],['../LinearAlgebraBasics_8h.html#af7d5ddd30836f7afbb88d5887b96548e',1,'QR():&#160;LinearAlgebraBasics.h']]],
+  ['qr_5fdecomposition_46',['QR_decomposition',['../LinearAlgebraBasics_8h.html#a55e665b5e71c3ce31c616f5b7bc3622e',1,'QR_decomposition(double *A, int rows, int columns):&#160;QR_decomposition.c'],['../QR__decomposition_8c.html#a55e665b5e71c3ce31c616f5b7bc3622e',1,'QR_decomposition(double *A, int rows, int columns):&#160;QR_decomposition.c']]],
+  ['qr_5fdecomposition_2ec_47',['QR_decomposition.c',['../QR__decomposition_8c.html',1,'']]],
+  ['qr_5fdecomposition_5fparallel_48',['QR_decomposition_parallel',['../LinearAlgebraBasics_8h.html#a0c924ea74d913526ac96376305ead15a',1,'QR_decomposition_parallel(double *A, int rows, int columns):&#160;QR_decomposition.c'],['../QR__decomposition_8c.html#a0c924ea74d913526ac96376305ead15a',1,'QR_decomposition_parallel(double *A, int rows, int columns):&#160;QR_decomposition.c']]],
+  ['qr_5ffree_49',['QR_free',['../LinearAlgebraBasics_8h.html#ae266b1eaa592ab695cd19e7ef485ec46',1,'QR_free(QR *QR_decomposition):&#160;QR_decomposition.c'],['../QR__decomposition_8c.html#ae266b1eaa592ab695cd19e7ef485ec46',1,'QR_free(QR *QR_decomposition):&#160;QR_decomposition.c']]]
 ];

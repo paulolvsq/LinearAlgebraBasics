@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['cholesky_0',['Cholesky',['../struct_cholesky.html',1,'']]]
+  ['cholesky_64',['Cholesky',['../structCholesky.html',1,'']]]
 ];

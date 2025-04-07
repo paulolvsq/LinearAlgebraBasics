@@ -132,67 +132,63 @@ $(document).ready(function(){initNavTree('Cholesky__decomposition_8c_source.html
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <a class="code" href="structCholesky.html">Cholesky</a> *Cholesky_decomp = <a class="code" href="Cholesky__decomposition_8c.html#ac361f8c6e86d68910292cbc96ac7a8b2">create_Cholesky</a>(A, size);</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    </div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordflow">if</span> (!Cholesky_decomp) <span class="keywordflow">return</span> NULL;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; size; i++) {</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt;= i; j++) {</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;            <span class="keywordtype">double</span> sum = 0.0;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            <span class="keywordflow">if</span> (j == i) { </div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;                <span class="keywordflow">for</span> (<span class="keywordtype">int</span> k = 0; k &lt; j; k++)</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                    sum += Cholesky_decomp-&gt;<a class="code" href="structCholesky.html#adc65d8307bd5df022d50b44f43eebf2d">L</a>[j * size + k] * Cholesky_decomp-&gt;<a class="code" href="structCholesky.html#adc65d8307bd5df022d50b44f43eebf2d">L</a>[j * size + k];</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                <span class="keywordtype">double</span> diag_value = A[j * size + j] - sum;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        </div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;                if (diag_value &lt;= 0) {</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                    fprintf(stderr, <span class="stringliteral">&quot;Matrix is not positive definite at row %d.\n&quot;</span>, j);</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                    <a class="code" href="Cholesky__decomposition_8c.html#a74389f362649420e94a4a70a4a6e53ef">free_Cholesky</a>(Cholesky_decomp);</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                    <span class="keywordflow">return</span> NULL;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                }</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                Cholesky_decomp-&gt;<a class="code" href="structCholesky.html#adc65d8307bd5df022d50b44f43eebf2d">L</a>[j * size + j] = sqrt(diag_value);</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;            }</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        <span class="keywordflow">else</span> { </div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;                <span class="keywordflow">for</span> (<span class="keywordtype">int</span> k = 0; k &lt; j; k++)</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;                    sum += Cholesky_decomp-&gt;<a class="code" href="structCholesky.html#adc65d8307bd5df022d50b44f43eebf2d">L</a>[i * size + k] * Cholesky_decomp-&gt;<a class="code" href="structCholesky.html#adc65d8307bd5df022d50b44f43eebf2d">L</a>[j * size + k];</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160; </div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;                Cholesky_decomp-&gt;<a class="code" href="structCholesky.html#adc65d8307bd5df022d50b44f43eebf2d">L</a>[i * size + j] = (A[i * size + j] - sum) / Cholesky_decomp-&gt;<a class="code" href="structCholesky.html#adc65d8307bd5df022d50b44f43eebf2d">L</a>[j * size + j];</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;            }</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        }</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    }</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="keywordtype">double</span> *L_t = <a class="code" href="LinearAlgebraBasics_8h.html#ab0dbb8e94aba0fd0c34354a6d5528b63">matrix_transpose</a>(Cholesky_decomp-&gt;<a class="code" href="structCholesky.html#adc65d8307bd5df022d50b44f43eebf2d">L</a>, size, size);</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    </div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <span class="keywordflow">if</span> (!L_t) {</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        fprintf(stderr, <span class="stringliteral">&quot;Memory allocation failed for transpose of L.\n&quot;</span>);</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        <a class="code" href="Cholesky__decomposition_8c.html#a74389f362649420e94a4a70a4a6e53ef">free_Cholesky</a>(Cholesky_decomp);</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordflow">if</span> (!Cholesky_decomp) {</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    fprintf(stderr, <span class="stringliteral">&quot;Memory allocation failed for Cholesky structure.\n&quot;</span>);</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    }</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; size; i++) {</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt;= i; j++) {</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            <span class="keywordtype">double</span> sum = 0.0;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;            <span class="keywordflow">if</span> (j == i) { </div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                <span class="keywordflow">for</span> (<span class="keywordtype">int</span> k = 0; k &lt; j; k++)</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;                    sum += Cholesky_decomp-&gt;<a class="code" href="structCholesky.html#adc65d8307bd5df022d50b44f43eebf2d">L</a>[j * size + k] * Cholesky_decomp-&gt;<a class="code" href="structCholesky.html#adc65d8307bd5df022d50b44f43eebf2d">L</a>[j * size + k];</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                <span class="keywordtype">double</span> diag_value = A[j * size + j] - sum;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        </div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                if (diag_value &lt;= 0) {</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                    fprintf(stderr, <span class="stringliteral">&quot;Matrix is not positive definite at row %d.\n&quot;</span>, j);</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;                    <a class="code" href="Cholesky__decomposition_8c.html#a74389f362649420e94a4a70a4a6e53ef">free_Cholesky</a>(Cholesky_decomp);</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                    <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;                }</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;                Cholesky_decomp-&gt;<a class="code" href="structCholesky.html#adc65d8307bd5df022d50b44f43eebf2d">L</a>[j * size + j] = sqrt(diag_value);</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;            }</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        <span class="keywordflow">else</span> { </div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;                <span class="keywordflow">for</span> (<span class="keywordtype">int</span> k = 0; k &lt; j; k++)</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;                    sum += Cholesky_decomp-&gt;<a class="code" href="structCholesky.html#adc65d8307bd5df022d50b44f43eebf2d">L</a>[i * size + k] * Cholesky_decomp-&gt;<a class="code" href="structCholesky.html#adc65d8307bd5df022d50b44f43eebf2d">L</a>[j * size + k];</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;                Cholesky_decomp-&gt;<a class="code" href="structCholesky.html#adc65d8307bd5df022d50b44f43eebf2d">L</a>[i * size + j] = (A[i * size + j] - sum) / Cholesky_decomp-&gt;<a class="code" href="structCholesky.html#adc65d8307bd5df022d50b44f43eebf2d">L</a>[j * size + j];</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;            }</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        }</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    }</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160; </div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; size; i++) {</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; size; j++) {</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        Cholesky_decomp-&gt;<a class="code" href="structCholesky.html#ad6b350d90824963844ce2e50a2b5b457">L_t</a>[j * size + i] = Cholesky_decomp-&gt;<a class="code" href="structCholesky.html#adc65d8307bd5df022d50b44f43eebf2d">L</a>[i * size + j];</div>
 <div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    }</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160; </div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    memcpy(Cholesky_decomp-&gt;<a class="code" href="structCholesky.html#ad6b350d90824963844ce2e50a2b5b457">L_t</a>, L_t, size * size * <span class="keyword">sizeof</span>(<span class="keywordtype">double</span>));</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    </div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    free(L_t);</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    }</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    </div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <span class="keywordflow">return</span> Cholesky_decomp;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;}</div>
 <div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160; </div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <span class="keywordflow">return</span> Cholesky_decomp;</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;}</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160; </div>
-<div class="line"><a name="l00131"></a><span class="lineno"><a class="line" href="Cholesky__decomposition_8c.html#a74389f362649420e94a4a70a4a6e53ef">  131</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="Cholesky__decomposition_8c.html#a74389f362649420e94a4a70a4a6e53ef">free_Cholesky</a>(<a class="code" href="structCholesky.html">Cholesky</a> *<a class="code" href="Cholesky__decomposition_8c.html#ab8dd4d8d4a68c158ed9025a222f6680a">Cholesky_decomposition</a>) {</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160; </div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    <span class="keywordflow">if</span> (!<a class="code" href="Cholesky__decomposition_8c.html#ab8dd4d8d4a68c158ed9025a222f6680a">Cholesky_decomposition</a>) <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160; </div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    free(<a class="code" href="Cholesky__decomposition_8c.html#ab8dd4d8d4a68c158ed9025a222f6680a">Cholesky_decomposition</a>-&gt;<a class="code" href="structCholesky.html#af923bbc1a43b3665e4b63a6adb7e28a5">A</a>);</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    free(<a class="code" href="Cholesky__decomposition_8c.html#ab8dd4d8d4a68c158ed9025a222f6680a">Cholesky_decomposition</a>-&gt;<a class="code" href="structCholesky.html#adc65d8307bd5df022d50b44f43eebf2d">L</a>);</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    free(<a class="code" href="Cholesky__decomposition_8c.html#ab8dd4d8d4a68c158ed9025a222f6680a">Cholesky_decomposition</a>-&gt;<a class="code" href="structCholesky.html#ad6b350d90824963844ce2e50a2b5b457">L_t</a>);</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160; </div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    free(<a class="code" href="Cholesky__decomposition_8c.html#ab8dd4d8d4a68c158ed9025a222f6680a">Cholesky_decomposition</a>);</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160; </div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;}</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    </div>
-<div class="ttc" id="aCholesky__decomposition_8c_html_a74389f362649420e94a4a70a4a6e53ef"><div class="ttname"><a href="Cholesky__decomposition_8c.html#a74389f362649420e94a4a70a4a6e53ef">free_Cholesky</a></div><div class="ttdeci">void free_Cholesky(Cholesky *Cholesky_decomposition)</div><div class="ttdoc">Frees all memory associated with a Cholesky decomposition structure.</div><div class="ttdef"><b>Definition:</b> <a href="Cholesky__decomposition_8c_source.html#l00131">Cholesky_decomposition.c:131</a></div></div>
+<div class="line"><a name="l00128"></a><span class="lineno"><a class="line" href="Cholesky__decomposition_8c.html#a74389f362649420e94a4a70a4a6e53ef">  128</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="Cholesky__decomposition_8c.html#a74389f362649420e94a4a70a4a6e53ef">free_Cholesky</a>(<a class="code" href="structCholesky.html">Cholesky</a> *<a class="code" href="Cholesky__decomposition_8c.html#ab8dd4d8d4a68c158ed9025a222f6680a">Cholesky_decomposition</a>) {</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160; </div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    <span class="keywordflow">if</span> (!<a class="code" href="Cholesky__decomposition_8c.html#ab8dd4d8d4a68c158ed9025a222f6680a">Cholesky_decomposition</a>) <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160; </div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    free(<a class="code" href="Cholesky__decomposition_8c.html#ab8dd4d8d4a68c158ed9025a222f6680a">Cholesky_decomposition</a>-&gt;<a class="code" href="structCholesky.html#af923bbc1a43b3665e4b63a6adb7e28a5">A</a>);</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    free(<a class="code" href="Cholesky__decomposition_8c.html#ab8dd4d8d4a68c158ed9025a222f6680a">Cholesky_decomposition</a>-&gt;<a class="code" href="structCholesky.html#adc65d8307bd5df022d50b44f43eebf2d">L</a>);</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    free(<a class="code" href="Cholesky__decomposition_8c.html#ab8dd4d8d4a68c158ed9025a222f6680a">Cholesky_decomposition</a>-&gt;<a class="code" href="structCholesky.html#ad6b350d90824963844ce2e50a2b5b457">L_t</a>);</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160; </div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    free(<a class="code" href="Cholesky__decomposition_8c.html#ab8dd4d8d4a68c158ed9025a222f6680a">Cholesky_decomposition</a>);</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160; </div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;}</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    </div>
+<div class="ttc" id="aCholesky__decomposition_8c_html_a74389f362649420e94a4a70a4a6e53ef"><div class="ttname"><a href="Cholesky__decomposition_8c.html#a74389f362649420e94a4a70a4a6e53ef">free_Cholesky</a></div><div class="ttdeci">void free_Cholesky(Cholesky *Cholesky_decomposition)</div><div class="ttdoc">Frees all memory associated with a Cholesky decomposition structure.</div><div class="ttdef"><b>Definition:</b> <a href="Cholesky__decomposition_8c_source.html#l00128">Cholesky_decomposition.c:128</a></div></div>
 <div class="ttc" id="aCholesky__decomposition_8c_html_ab8dd4d8d4a68c158ed9025a222f6680a"><div class="ttname"><a href="Cholesky__decomposition_8c.html#ab8dd4d8d4a68c158ed9025a222f6680a">Cholesky_decomposition</a></div><div class="ttdeci">Cholesky * Cholesky_decomposition(double *A, int size)</div><div class="ttdoc">Performs Cholesky decomposition on a symmetric positive-definite matrix.</div><div class="ttdef"><b>Definition:</b> <a href="Cholesky__decomposition_8c_source.html#l00061">Cholesky_decomposition.c:61</a></div></div>
 <div class="ttc" id="aCholesky__decomposition_8c_html_ac361f8c6e86d68910292cbc96ac7a8b2"><div class="ttname"><a href="Cholesky__decomposition_8c.html#ac361f8c6e86d68910292cbc96ac7a8b2">create_Cholesky</a></div><div class="ttdeci">Cholesky * create_Cholesky(double *A, int size)</div><div class="ttdoc">Allocates and initializes a Cholesky decomposition structure.</div><div class="ttdef"><b>Definition:</b> <a href="Cholesky__decomposition_8c_source.html#l00018">Cholesky_decomposition.c:18</a></div></div>
 <div class="ttc" id="aLinearAlgebraBasics_8h_html"><div class="ttname"><a href="LinearAlgebraBasics_8h.html">LinearAlgebraBasics.h</a></div></div>
-<div class="ttc" id="aLinearAlgebraBasics_8h_html_ab0dbb8e94aba0fd0c34354a6d5528b63"><div class="ttname"><a href="LinearAlgebraBasics_8h.html#ab0dbb8e94aba0fd0c34354a6d5528b63">matrix_transpose</a></div><div class="ttdeci">double * matrix_transpose(double *A, int rows, int columns)</div><div class="ttdoc">Computes the transpose of a given matrix A.</div><div class="ttdef"><b>Definition:</b> <a href="matrix__operations_8c_source.html#l00102">matrix_operations.c:102</a></div></div>
 <div class="ttc" id="astructCholesky_html"><div class="ttname"><a href="structCholesky.html">Cholesky</a></div><div class="ttdoc">Represents the Cholesky decomposition of a matrix.</div><div class="ttdef"><b>Definition:</b> <a href="LinearAlgebraBasics_8h_source.html#l00091">LinearAlgebraBasics.h:91</a></div></div>
 <div class="ttc" id="astructCholesky_html_a303579fc50b3a267b5f0b0afb3a88267"><div class="ttname"><a href="structCholesky.html#a303579fc50b3a267b5f0b0afb3a88267">Cholesky::size</a></div><div class="ttdeci">int size</div><div class="ttdef"><b>Definition:</b> <a href="LinearAlgebraBasics_8h_source.html#l00093">LinearAlgebraBasics.h:93</a></div></div>
 <div class="ttc" id="astructCholesky_html_ad6b350d90824963844ce2e50a2b5b457"><div class="ttname"><a href="structCholesky.html#ad6b350d90824963844ce2e50a2b5b457">Cholesky::L_t</a></div><div class="ttdeci">double * L_t</div><div class="ttdef"><b>Definition:</b> <a href="LinearAlgebraBasics_8h_source.html#l00097">LinearAlgebraBasics.h:97</a></div></div>
