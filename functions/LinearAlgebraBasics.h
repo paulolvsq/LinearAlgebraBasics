@@ -148,6 +148,7 @@ typedef struct SVD {
 /* SVD.c */
 
 SVD *create_SVD(double *A, int rows, int columns);
+SVD *SVD_decomposition(double *A, int rows, int columns);
 void SVD_free(SVD *SVD_decomposition);
 
 /* LDLT_decomposition.c */

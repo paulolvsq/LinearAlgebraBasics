@@ -42,36 +42,29 @@ SVD *create_SVD(double *A, int rows, int columns) {
 
 }
 
-/*
-
-  #include "LinearAlgebraBasics.h"
-#include <math.h> // Pour sqrt()
-
 SVD *SVD_decomposition(double *A, int rows, int columns) {
-    // Vérification des arguments
+    
     if (!A || rows <= 0 || columns <= 0) {
         fprintf(stderr, "Error: Invalid input to SVD_decomposition.\n");
         return NULL;
     }
 
-    // Création de la structure SVD
     SVD *SVD_decomposition = create_SVD(A, rows, columns);
+    
     if (!SVD_decomposition) {
         fprintf(stderr, "Error: Failed to allocate memory for SVD structure.\n");
         return NULL;
     }
 
-    // Étape 1 : Calcul de A^T (transpose de A)
-    double *AT = malloc(columns * rows * sizeof(double));
+    double *AT = matrix_transpose(A, rows, columns);
+
     if (!AT) {
         fprintf(stderr, "Error: Memory allocation failed for AT.\n");
         SVD_free(SVD_decomposition);
         return NULL;
     }
-    Matrix_transpose(A, rows, columns, AT);
-
-    // Étape 2 : Calcul de A^T * A
     double *ATA = calloc(columns * columns, sizeof(double));
+
     if (!ATA) {
         fprintf(stderr, "Error: Memory allocation failed for ATA.\n");
         free(AT);
@@ -87,9 +80,10 @@ SVD *SVD_decomposition(double *A, int rows, int columns) {
         }
     }
 
-    // Étape 3 : Calcul des valeurs propres et vecteurs propres de ATA
-    double *eigenvalues = calloc(columns, sizeof(double));
+    double *eigenvalues = matrix_eigenvalues(ATA, columns, columns, 1000, 1E-20);
+
     double *eigenvectors = calloc(columns * columns, sizeof(double));
+
     if (!eigenvalues || !eigenvectors) {
         fprintf(stderr, "Error: Memory allocation failed for eigenvalues or eigenvectors.\n");
         free(AT);
@@ -100,29 +94,27 @@ SVD *SVD_decomposition(double *A, int rows, int columns) {
         return NULL;
     }
 
-    Matrix_eigenvalues(ATA, columns, eigenvalues, eigenvectors);
-
-    // Remplissage de V et des valeurs singulières (S)
     memcpy(SVD_decomposition->V, eigenvectors, columns * columns * sizeof(double));
+
     for (int i = 0; i < columns; i++) {
         SVD_decomposition->S[i] = sqrt(eigenvalues[i]);
     }
 
-    // Étape 4 : Calcul de U = A * V * Σ^(-1)
+    double epsilon = 1e-12;
+    
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < columns; j++) {
             SVD_decomposition->U[i * columns + j] = 0.0;
             for (int k = 0; k < columns; k++) {
-                if (SVD_decomposition->S[k] > 1e-10) { // Éviter la division par zéro
+                if (SVD_decomposition->S[k] > epsilon) { 
                     SVD_decomposition->U[i * columns + j] += A[i * columns + k] *
-                                                             SVD_decomposition->V[k * columns + j] /
-                                                             SVD_decomposition->S[j];
+			SVD_decomposition->V[k * columns + j] /
+			SVD_decomposition->S[j];
                 }
             }
         }
     }
 
-    // Nettoyage
     free(AT);
     free(ATA);
     free(eigenvalues);
@@ -130,7 +122,6 @@ SVD *SVD_decomposition(double *A, int rows, int columns) {
 
     return SVD_decomposition;
 }
-*/ 
 
 void SVD_free(SVD *SVD_decomposition) {
 
