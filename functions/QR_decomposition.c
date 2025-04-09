@@ -96,11 +96,12 @@ QR *QR_decomposition(double *A, int rows, int columns) {
 
 	for (int j = 0; j < rows; j++) {
 	    val = QR_decomposition->A[j * columns + k];
+	    printf("val = %lf\n", val);
 	    s += val * val;
 	}
 	
 	if (s < epsilon) { 
-            fprintf(stderr, "Error: Column %d is singular or zero during QR decomposition.\n", k);
+            fprintf(stderr, "Error: Column %d is singular or zero during QR decomposition and s = %lf.\n", k, s);
             QR_free(QR_decomposition);
             return NULL;
         }

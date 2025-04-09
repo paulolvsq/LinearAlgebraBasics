@@ -121,7 +121,7 @@ double *matrix_transpose(double *A, int rows, int columns) {
     
     for (int i = 0; i < columns; i++)
 	for (int j = 0; j < rows; j++)
-	    matrix[i * rows + j] = A[j * rows + i];
+	    matrix[i * rows + j] = A[j * columns + i];
 
     return matrix;
 
@@ -736,5 +736,147 @@ double *matrix_inverse(double *A, int d) {
     LU_free(LU_matrix);
     
     return inverse;
+    
+}
+
+double *matrix_eigenvectors(double *A, int size, double *eigenvalues, int max_iter, double tol) {
+    
+    if (!A || !eigenvalues || size <= 0) {
+        fprintf(stderr, "Error: Invalid input to matrix_eigenvectors.\n");
+        return NULL;
+    }
+
+    double *eigenvectors = calloc(size * size, sizeof(double));
+
+    if (!eigenvectors) {
+        fprintf(stderr, "Error: Memory allocation failed for eigenvectors.\n");
+        return NULL;
+    }
+
+    double *b = malloc(size * sizeof(double));
+    double *x = malloc(size * sizeof(double));
+    double *temp_matrix = malloc(size * size * sizeof(double));
+    double *solution = NULL;
+    
+    if (!b || !x || !temp_matrix) {
+        fprintf(stderr, "Error: Memory allocation failed in matrix_eigenvectors.\n");
+        free(eigenvectors);
+        if (b) free(b);
+        if (x) free(x);
+        if (temp_matrix) free(temp_matrix);
+        return NULL;
+    }
+
+    double shift_epsilon = 1e-12; 
+
+    for (int i = 0; i < size; i++) {
+	
+        for (int j = 0; j < size; j++) {
+            b[j] = ((double) rand() / RAND_MAX) * 2.0 - 1.0;
+        }
+        
+        for (int j = 0; j < i; j++) {
+            double dot_product = 0.0;
+            for (int k = 0; k < size; k++) {
+                dot_product += b[k] * eigenvectors[k * size + j];
+            }
+            for (int k = 0; k < size; k++) {
+                b[k] -= dot_product * eigenvectors[k * size + j];
+            }
+        }
+        
+        double norm = 0.0;
+        for (int j = 0; j < size; j++) {
+            norm += b[j] * b[j];
+        }
+        norm = sqrt(norm);
+        if (norm < tol) {
+            b[i] = 1.0;
+            norm = 1.0;
+        }
+        for (int j = 0; j < size; j++) {
+            b[j] /= norm;
+        }
+
+        for (int j = 0; j < size; j++) {
+            for (int k = 0; k < size; k++) {
+                if (j == k) {
+                    temp_matrix[j * size + k] = A[j * size + k] - eigenvalues[i] + shift_epsilon;
+                }
+		else {
+                    temp_matrix[j * size + k] = A[j * size + k];
+                }
+            }
+        }
+        
+        for (int iter = 0; iter < max_iter; iter++) {
+
+	    memcpy(x, b, size * sizeof(double));
+
+	    solution = solve_LU_system(temp_matrix, x, size);
+            
+            if (!solution) {
+                fprintf(stderr, "Warning: Failed to solve linear system for eigenvector %d.\n", i);
+                break;
+            }
+
+	    memcpy(b, solution, size * sizeof(double));
+	    free(solution);
+	    
+            norm = 0.0;
+            for (int j = 0; j < size; j++) {
+                norm += b[j] * b[j];
+            }
+            norm = sqrt(norm);
+            
+            // Vérifier la convergence
+            if (norm < tol) {
+                fprintf(stderr, "Warning: Eigenvector %d did not converge properly.\n", i);
+                break;
+            }
+            
+            for (int j = 0; j < size; j++) {
+                b[j] /= norm;
+            }
+        }
+        
+        // Copier le vecteur propre calculé dans la matrice des vecteurs propres
+        for (int j = 0; j < size; j++) {
+            eigenvectors[j * size + i] = b[j];
+        }
+        
+        // Réappliquer Gram-Schmidt pour garantir l'orthogonalité numérique
+        for (int j = 0; j < i; j++) {
+            double dot_product = 0.0;
+            for (int k = 0; k < size; k++) {
+                dot_product += eigenvectors[k * size + i] * eigenvectors[k * size + j];
+            }
+            for (int k = 0; k < size; k++) {
+                eigenvectors[k * size + i] -= dot_product * eigenvectors[k * size + j];
+            }
+        }
+        
+        // Normaliser à nouveau
+        norm = 0.0;
+        for (int j = 0; j < size; j++) {
+            norm += eigenvectors[j * size + i] * eigenvectors[j * size + i];
+        }
+        norm = sqrt(norm);
+        if (norm < tol) {
+            fprintf(stderr, "Warning: Eigenvector %d is nearly zero after orthogonalization.\n", i);
+        }
+	else {
+            for (int j = 0; j < size; j++) {
+                eigenvectors[j * size + i] /= norm;
+            }
+        }
+    }
+    
+    // Libérer la mémoire temporaire
+    free(b);
+    free(x);
+    free(temp_matrix);
+    
+    return eigenvectors;
     
 }

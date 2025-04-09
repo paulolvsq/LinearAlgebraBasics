@@ -26,7 +26,7 @@ SVD *create_SVD(double *A, int rows, int columns) {
     SVD_decomposition->columns = columns;
 
     SVD_decomposition->A = malloc(rows * columns * sizeof(double));
-    SVD_decomposition->U = calloc(rows * rows, sizeof(double));
+    SVD_decomposition->U = calloc(rows * min, sizeof(double));
     SVD_decomposition->S = calloc(min, sizeof(double));
     SVD_decomposition->V = calloc(columns * columns, sizeof(double));
 
@@ -63,26 +63,37 @@ SVD *SVD_decomposition(double *A, int rows, int columns) {
         SVD_free(SVD_decomposition);
         return NULL;
     }
-    double *ATA = calloc(columns * columns, sizeof(double));
+
+    printf("AT = \n");
+
+    for (int i = 0; i < columns; i++) {
+	for (int j = 0; j < rows; j++) {
+	    printf("%lf\t", AT[i * rows + j]);
+	}
+	printf("\n");
+    }
+    
+    double *ATA = sequential_matrix_product(AT, columns, rows, A, rows, columns); 
 
     if (!ATA) {
-        fprintf(stderr, "Error: Memory allocation failed for ATA.\n");
+        fprintf(stderr, "Error: Matrix product failed in SVD for ATA.\n");
         free(AT);
         SVD_free(SVD_decomposition);
         return NULL;
     }
 
-    for (int i = 0; i < columns; i++) {
-        for (int j = 0; j < columns; j++) {
-            for (int k = 0; k < rows; k++) {
-                ATA[i * columns + j] += AT[k * columns + i] * A[k * columns + j];
-            }
-        }
-    }
+    printf("ATA = \n");
 
+    for (int i = 0; i < columns; i++) {
+	for (int j = 0; j < columns; j++) {
+	    printf("%lf\t", ATA[i * columns + j]);
+	}
+	printf("\n");
+    }
+    
     double *eigenvalues = matrix_eigenvalues(ATA, columns, columns, 1000, 1E-20);
 
-    double *eigenvectors = calloc(columns * columns, sizeof(double));
+    double *eigenvectors = matrix_eigenvectors(ATA, columns, eigenvalues, 1000, 1E-20);
 
     if (!eigenvalues || !eigenvectors) {
         fprintf(stderr, "Error: Memory allocation failed for eigenvalues or eigenvectors.\n");
@@ -96,21 +107,26 @@ SVD *SVD_decomposition(double *A, int rows, int columns) {
 
     memcpy(SVD_decomposition->V, eigenvectors, columns * columns * sizeof(double));
 
-    for (int i = 0; i < columns; i++) {
-        SVD_decomposition->S[i] = sqrt(eigenvalues[i]);
+    int min = (rows < columns) ? rows : columns;
+
+    for (int i = 0; i < min; i++) {
+        SVD_decomposition->S[i] = sqrt(fabs(eigenvalues[i]));
     }
 
     double epsilon = 1e-12;
     
-    for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < columns; j++) {
-            SVD_decomposition->U[i * columns + j] = 0.0;
-            for (int k = 0; k < columns; k++) {
-                if (SVD_decomposition->S[k] > epsilon) { 
-                    SVD_decomposition->U[i * columns + j] += A[i * columns + k] *
-			SVD_decomposition->V[k * columns + j] /
-			SVD_decomposition->S[j];
+    for (int j = 0; j < min; j++) {
+        if (SVD_decomposition->S[j] > epsilon) {
+            for (int i = 0; i < rows; i++) {
+                double sum = 0.0;
+                for (int k = 0; k < columns; k++) {
+                    sum += A[i * columns + k] * SVD_decomposition->V[k * columns + j];
                 }
+                SVD_decomposition->U[i * min + j] = sum / SVD_decomposition->S[j];
+            }
+        } else {
+            for (int i = 0; i < rows; i++) {
+                SVD_decomposition->U[i * min + j] = 0.0;
             }
         }
     }

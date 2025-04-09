@@ -637,6 +637,8 @@ double *matrix_inverse(double *A, int n);
 
 int has_converged(double *H, int n, double tol);
 
+double *matrix_eigenvectors(double *A, int size, double *eigenvalues, int max_iter, double tol);
+
 /* LU_decomposition.c */
 
 /**
