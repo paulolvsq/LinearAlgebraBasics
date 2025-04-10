@@ -133,6 +133,23 @@ typedef struct LDLT {
 
 } LDLT;
 
+typedef struct SVD {
+ 
+     int rows;
+     int columns;
+ 
+     double *A;
+     double *U;
+     double *S;
+     double *V;
+ 
+ } SVD;
+ 
+ /* SVD.c */
+ 
+ SVD *create_SVD(double *A, int rows, int columns);
+ void SVD_free(SVD *SVD_decomposition);
+
 /* LDLT_decomposition.c */
 
 /**
@@ -619,7 +636,7 @@ double *matrix_inverse(double *A, int n);
 
 int has_converged(double *H, int n, double tol);
 
-double *matrix_eigenvectors(double *A, int size, double *eigenvalues, int max_iter, double tol);
+//double *matrix_eigenvectors(double *A, int size, double *eigenvalues, int max_iter, double tol);
 
 /* LU_decomposition.c */
 

@@ -96,7 +96,6 @@ QR *QR_decomposition(double *A, int rows, int columns) {
 
 	for (int j = 0; j < rows; j++) {
 	    val = QR_decomposition->A[j * columns + k];
-	    printf("val = %lf\n", val);
 	    s += val * val;
 	}
 	
