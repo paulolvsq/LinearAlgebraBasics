@@ -21,7 +21,7 @@ endif
 
 LIB = LinearAlgebraBasics.so
 
-all : TEST_generate_matrix TEST_sequential_matrix_product TEST_sequential_vector_matrix_product TEST_vector_operations TEST_matrix_operations TEST_LU_decomposition TEST_QR_decomposition TEST_matrix_inverse TEST_parallel_vector_matrix_product TEST_parallel_matrix_product TEST_Cholesky TEST_LDLT TEST_SVD
+all : TEST_generate_matrix TEST_sequential_matrix_product TEST_sequential_vector_matrix_product TEST_vector_operations TEST_matrix_operations TEST_LU_decomposition TEST_QR_decomposition TEST_matrix_inverse TEST_parallel_vector_matrix_product TEST_parallel_matrix_product TEST_Cholesky TEST_LDLT
 	./TEST_generate_matrix
 	./TEST_sequential_matrix_product
 	./TEST_sequential_vector_matrix_product
@@ -34,7 +34,6 @@ all : TEST_generate_matrix TEST_sequential_matrix_product TEST_sequential_vector
 	./TEST_parallel_matrix_product
 	./TEST_Cholesky
 	./TEST_LDLT
-	./TEST_SVD
 
 TEST_generate_matrix : TEST_generate_matrix.c
 	$(CC) $(CFLAGS) -o $@ $^ ./$(LIB) $(OMPFLAGS)
@@ -70,9 +69,6 @@ TEST_Cholesky : TEST_Cholesky.c
 	$(CC) $(CFLAGS) -o $@ $^ ./$(LIB) $(OMPFLAGS)
 
 TEST_LDLT : TEST_LDLT.c
-	$(CC) $(CFLAGS) -o $@ $^ ./$(LIB) $(OMPFLAGS)
-
-TEST_SVD : TEST_SVD.c
 	$(CC) $(CFLAGS) -o $@ $^ ./$(LIB) $(OMPFLAGS)
 
 clean :
