@@ -47,8 +47,9 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"Cholesky__decomposition_8c.html"
+"_cholesky__decomposition_8c.html"
 ];
 
-var SYNCONMSG = 'click to disable panel synchronisation';
-var SYNCOFFMSG = 'click to enable panel synchronisation';
+var SYNCONMSG = 'click to disable panel synchronization';
+var SYNCOFFMSG = 'click to enable panel synchronization';
+var LISTOFALLMEMBERS = 'List of all members';
