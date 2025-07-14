@@ -26,7 +26,7 @@ all : LinearAlgebraBasics.so LinearAlgebraBasics.h
 	cp $^ ../tests
 	cp $^ ../performances
 
-LinearAlgebraBasics.so : generate_matrix.o sequential_matrix_product.o sequential_vector_matrix_product.o vector_operations.o matrix_operations.o LU_decomposition.o QR_decomposition.o parallel_vector_matrix_product.o parallel_matrix_product.o Cholesky_decomposition.o LDLT_decomposition.o SVD.o
+LinearAlgebraBasics.so : generate_matrix.o sequential_matrix_product.o sequential_vector_matrix_product.o vector_operations.o matrix_operations.o LU_decomposition.o QR_decomposition.o parallel_vector_matrix_product.o parallel_matrix_product.o Cholesky_decomposition.o LDLT_decomposition.o 
 	$(CC) $(CFLAGS) -shared $^ -o $@ $(MATH)
 
 generate_matrix.o : generate_matrix.c
@@ -60,9 +60,6 @@ Cholesky_decomposition.o : Cholesky_decomposition.c
 	$(CC) $(CFLAGS) -c -o $@ $^ $(MATH)
 
 LDLT_decomposition.o : LDLT_decomposition.c
-	$(CC) $(CFLAGS) -c -o $@ $^ $(MATH)
-
-SVD.o : SVD.c
 	$(CC) $(CFLAGS) -c -o $@ $^ $(MATH)
 
 clean :
