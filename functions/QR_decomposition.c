@@ -34,12 +34,6 @@ QR *create_QR(double *A, int rows, int columns) {
         return NULL;
     }
 
-    // A (rows * columns) ||| Q (rows * columns) ||| R (columns * columns)
-    // A (m * n) ||| Q (m * n) ||| R (n * n)
-    // m > n with rank(A) = n
-    // to be coherent with memory access in QR_decomposition functions
-    // mathematically, Q is (rows * columns) and R is (columns * columns)
-
     QR_decomposition->rows = rows;
     QR_decomposition->columns = columns;
 
@@ -84,8 +78,6 @@ QR *QR_decomposition(double *A, int rows, int columns) {
         fprintf(stderr, "Error: Failed to create QR decomposition structure.\n");
         return NULL;
     }
-
-    // MODIFIED GRAM SCHMIDT METHOD
 
     double val;
     double epsilon = 1e-10;
@@ -151,8 +143,6 @@ QR *QR_decomposition_parallel(double *A, int rows, int columns) {
         fprintf(stderr, "Error: Failed to create parallelized QR decomposition structure.\n");
         return NULL;
     }
-
-    // MODIFIED GRAM SCHMIDT METHOD
     
     double epsilon = 1e-10; 
 
