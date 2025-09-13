@@ -166,23 +166,25 @@ QR *QR_decomposition_parallel(double *A, int rows, int columns) {
 
 #pragma omp parallel for schedule(static)
         for (int j = 0; j < rows; j++) {
-            if (QR_decomposition->R[k * columns + k] > epsilon) {
-                QR_decomposition->Q[j * columns + k] =
-                    QR_decomposition->A[j * columns + k] / QR_decomposition->R[k * columns + k];
-            } else {
+
+	    if (QR_decomposition->R[k * columns + k] > epsilon) {
+                QR_decomposition->Q[j * columns + k] = QR_decomposition->A[j * columns + k] / QR_decomposition->R[k * columns + k];
+            }
+	    else {
                 QR_decomposition->Q[j * columns + k] = 0.0;
             }
-        }
+
+	}
 	
         for (int i = k + 1; i < columns; i++) {
-            s = 0.0;
+	    s = 0.0;
 #pragma omp parallel for reduction(+:s) schedule(static)
             for (int j = 0; j < rows; j++) {
                 s += QR_decomposition->A[j * columns + i] * QR_decomposition->Q[j * columns + k];
             }
-            QR_decomposition->R[k * columns + i] = s;
+	    QR_decomposition->R[k * columns + i] = s;
 #pragma omp parallel for schedule(static)
-            for (int j = 0; j < rows; j++) {
+	    for (int j = 0; j < rows; j++) {
                 QR_decomposition->A[j * columns + i] -= QR_decomposition->R[k * columns + i] * QR_decomposition->Q[j * columns + k];
             }
         }
