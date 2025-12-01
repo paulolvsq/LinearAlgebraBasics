@@ -1,19 +1,16 @@
-# Détection du système d'exploitation
 OS := $(shell uname -s)
 
-# Configuration spécifique à macOS
 ifeq ($(OS), Darwin)
     GCC_VERSIONS := $(shell ls /opt/homebrew/bin/gcc-* 2>/dev/null | grep -E 'gcc-[0-9]+' || which gcc)
     GCC := $(shell echo $(GCC_VERSIONS) | tr ' ' '\n' | grep -E 'gcc-[0-9]+' | sort -V | tail -n 1)
     ifeq ($(GCC),)
-        GCC := gcc  # Utiliser le gcc standard si aucun gcc spécifique n'est trouvé
+        GCC := gcc
     endif
     SDK_PATH := $(shell xcrun --show-sdk-path)
     CC = $(GCC)
     CFLAGS = -isysroot $(SDK_PATH) -fopenmp
     LDFLAGS = -lm -lgomp
 else
-    # Configuration standard pour Linux
     CC = gcc
     CFLAGS = -fopenmp
     LDFLAGS = -lm
